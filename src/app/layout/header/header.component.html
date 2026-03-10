@@ -1,0 +1,147 @@
+<header class="main-header" [class.scrolled]="scrolled">
+  <div class="header-inner">
+
+    <!-- Logo -->
+    <a routerLink="/home" class="logo">
+      <!--
+      <img src="https://www.helpageindia.org/wp-content/uploads/2025/07/hi-logo-new-2048x301-1-250x37.webp"
+          alt="HelpAge India" />
+      -->
+
+      <span class="logo-text">Aazhi Foundation</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" role="navigation" aria-label="Main Navigation">
+      <ul>
+        <li>
+          <a routerLink="/home" routerLinkActive="active">Home</a>
+        </li>
+
+        <li>
+          <a routerLink="/about-us" routerLinkActive="active">About Us</a>
+        </li>
+
+        <!-- Take Action Dropdown -->
+        <li class="has-dropdown" (click)="toggleDropdown('takeAction')">
+          <span [class.active-parent]="activeDropdown==='takeAction'">
+            Take Action <i class="arrow" [class.open]="activeDropdown==='takeAction'">▾</i>
+          </span>
+          <div class="mega-menu" *ngIf="activeDropdown==='takeAction'" (click)="$event.stopPropagation()">
+            <div class="mega-col">
+              <span class="mega-heading">Campaigns</span>
+              <div class="mega-sub-label">Live Campaign</div>
+              <a routerLink="/advantage-60" (click)="closeMobile()">AdvantAge 60</a>
+              <div class="mega-sub-label">Archive</div>
+              <a routerLink="/walk-in-my-shoes" (click)="closeMobile()">Walk In My Shoes</a>
+              <a routerLink="/home" (click)="closeMobile()">Sab Ki Diwali</a>
+              <a routerLink="/home" (click)="closeMobile()">Ghar Ka Ujala</a>
+              <a routerLink="/home" (click)="closeMobile()">Main Bhi Hoon</a>
+              <a routerLink="/home" (click)="closeMobile()">Be the Hero They Deserve</a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-heading">Disaster Relief</span>
+              <div class="mega-sub-label">Archive</div>
+              <a routerLink="/disaster-relief" (click)="closeMobile()">Flood Relief 2025</a>
+              <a routerLink="/disaster-relief" (click)="closeMobile()">Disaster Relief 2024</a>
+              <a routerLink="/disaster-relief" (click)="closeMobile()">Covid 19 Relief Response</a>
+              <a routerLink="/disaster-relief" (click)="closeMobile()">North India Flood Relief</a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-heading">More</span>
+              <a routerLink="/home" (click)="closeMobile()">Online Store</a>
+              <a routerLink="/partners" (click)="closeMobile()">Partners</a>
+            </div>
+          </div>
+        </li>
+
+        <!-- Our Work Dropdown -->
+        <li class="has-dropdown" (click)="toggleDropdown('ourWork')">
+          <span [class.active-parent]="activeDropdown==='ourWork'">
+            Our Work <i class="arrow" [class.open]="activeDropdown==='ourWork'">▾</i>
+          </span>
+          <div class="mega-menu wide" *ngIf="activeDropdown==='ourWork'" (click)="$event.stopPropagation()">
+            <div class="mega-col">
+              <span class="mega-heading">Healthcare</span>
+              <a routerLink="/our-work/healthcare" (click)="closeMobile()">Primary Healthcare</a>
+              <a routerLink="/our-work/healthcare" (click)="closeMobile()">Vision Restoration &amp; Correction</a>
+              <a routerLink="/our-work/healthcare" (click)="closeMobile()">Mental Health</a>
+              <a routerLink="/our-work/healthcare" (click)="closeMobile()">Telehealth</a>
+              <a routerLink="/our-work/healthcare" (click)="closeMobile()">Palliative Care</a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-heading">Agecare</span>
+              <a routerLink="/our-work/agecare" (click)="closeMobile()">Elder Helplines</a>
+              <a routerLink="/our-work/agecare" (click)="closeMobile()">Senior Care Homes</a>
+              <a routerLink="/our-work/agecare" (click)="closeMobile()">Active Ageing Centres</a>
+              <a routerLink="/our-work/agecare" (click)="closeMobile()">Physiocare</a>
+              <a routerLink="/our-work/agecare" (click)="closeMobile()">Caregiving</a>
+              <a routerLink="/our-work/agecare" (click)="closeMobile()">Mobility Aids</a>
+              <a routerLink="/our-work/agecare" (click)="closeMobile()">Support a Gran</a>
+              <a routerLink="/our-work/agecare" (click)="closeMobile()">Elder Help Desk</a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-heading">Livelihoods &amp; Emergencies</span>
+              <a routerLink="/our-work/livelihoods" (click)="closeMobile()">Elder Self Help Groups</a>
+              <a routerLink="/our-work/livelihoods" (click)="closeMobile()">Disaster Management</a>
+              <span class="mega-heading" style="margin-top:14px">Awareness &amp; Advocacy</span>
+              <a routerLink="/our-work/advocacy" (click)="closeMobile()">Awareness &amp; Training Workshops</a>
+              <a routerLink="/our-work/advocacy" (click)="closeMobile()">SAVE</a>
+              <a routerLink="/our-work/advocacy" (click)="closeMobile()">Policy Advocacy</a>
+              <a routerLink="/our-work/advocacy" (click)="closeMobile()">Research</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <a routerLink="/impact-stories" routerLinkActive="active">Impact Stories</a>
+        </li>
+        <li>
+          <a routerLink="/get-involved" routerLinkActive="active">Get Involved</a>
+        </li>
+        <li>
+          <a routerLink="/blog" routerLinkActive="active">Blog</a>
+        </li>
+        <li>
+          <a routerLink="/contact" routerLinkActive="active">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- CTA Donate -->
+    <div class="header-cta">
+      <a routerLink="/donate" class="btn-donate">
+        <img src="https://www.helpageindia.org/wp-content/uploads/2024/09/heart-donate.png" alt="" />
+        Donate
+      </a>
+      <button class="mobile-toggle" (click)="toggleMobile()" aria-label="Toggle menu">
+        <span class="burger" [class.open]="mobileMenuOpen">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-nav" [class.open]="mobileMenuOpen" aria-label="Mobile Navigation">
+    <ul>
+      <li><a routerLink="/home" (click)="closeMobile()">🏠 Home</a></li>
+      <li><a routerLink="/about-us" (click)="closeMobile()">ℹ️ About Us</a></li>
+      <li class="mobile-section-label">📣 Take Action</li>
+      <li class="indent"><a routerLink="/advantage-60" (click)="closeMobile()">AdvantAge 60</a></li>
+      <li class="indent"><a routerLink="/walk-in-my-shoes" (click)="closeMobile()">Walk In My Shoes</a></li>
+      <li class="indent"><a routerLink="/disaster-relief" (click)="closeMobile()">Flood Relief 2025</a></li>
+      <li class="indent"><a routerLink="/partners" (click)="closeMobile()">Partners</a></li>
+      <li class="mobile-section-label">💼 Our Work</li>
+      <li class="indent"><a routerLink="/our-work/healthcare" (click)="closeMobile()">Healthcare</a></li>
+      <li class="indent"><a routerLink="/our-work/agecare" (click)="closeMobile()">Agecare</a></li>
+      <li class="indent"><a routerLink="/our-work/livelihoods" (click)="closeMobile()">Livelihoods &amp; Emergencies</a></li>
+      <li class="indent"><a routerLink="/our-work/advocacy" (click)="closeMobile()">Awareness &amp; Advocacy</a></li>
+      <li><a routerLink="/impact-stories" (click)="closeMobile()">⭐ Impact Stories</a></li>
+      <li><a routerLink="/get-involved" (click)="closeMobile()">🤝 Get Involved</a></li>
+      <li><a routerLink="/blog" (click)="closeMobile()">📝 Blog</a></li>
+      <li><a routerLink="/contact" (click)="closeMobile()">📞 Contact</a></li>
+      <li class="mobile-donate-li"><a routerLink="/donate" class="mobile-donate-btn" (click)="closeMobile()">❤️ Donate Now</a></li>
+    </ul>
+  </nav>
+</header>

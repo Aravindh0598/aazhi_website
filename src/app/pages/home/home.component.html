@@ -1,0 +1,202 @@
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <span class="hero-badge">Since 1978 · 45+ Years of Service</span>
+      <h1>
+        Empowering Ability,<br>
+        <span class="accent">Transforming Lives</span>
+      </h1>
+      <p class="hero-sub">
+        Together we create a world where individuals with disabilities can thrive,<br>
+        participate, &amp; live independently.
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/about-us" class="btn-primary">What We Do</a>
+        <a routerLink="/donate" class="btn-secondary donate-btn">
+          <i class="fa-solid fa-heart heart-icon"></i>
+          Support Now
+        </a>
+        <a routerLink="/get-involved" class="btn-ghost">Get Involved</a>
+      </div>
+      <div class="hero-stat-bar">
+        <div class="hstat"><span class="hnum">45+</span><span class="hlbl">Years of Service</span></div>
+        <div class="hbar-div"></div>
+        <div class="hstat"><span class="hnum">24</span><span class="hlbl">States Covered</span></div>
+        <div class="hbar-div"></div>
+        <div class="hstat"><span class="hnum">2M+</span><span class="hlbl">Lives Impacted</span></div>
+        <div class="hbar-div"></div>
+        <div class="hstat"><span class="hnum">300+</span><span class="hlbl">Mobile Health Units</span></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Image Slideshow -->
+    <div class="hero-right">
+      <div class="hero-slider">
+        <div class="hero-slides-wrapper"
+             [style.transform]="'translateX(-' + heroSlide * 100 + '%)'">
+          <div class="hero-slide" *ngFor="let slide of heroSlides">
+            <img [src]="slide.img" [alt]="slide.caption" />
+            <div class="slide-caption">
+              <span>{{ slide.caption }}</span>
+            </div>
+          </div>
+        </div>
+        <!-- Dots -->
+        <div class="hero-dots">
+          <button
+            *ngFor="let s of heroSlides; let i = index"
+            class="hdot"
+            [class.active]="heroSlide === i"
+            (click)="setHeroSlide(i)">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll For More</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- ===== IMPACT STORY BANNER ===== -->
+<section class="story-banner">
+  <div class="sb-inner">
+    <div class="sb-media">
+      <img src="https://www.helpageindia.org/wp-content/uploads/2025/08/Angur-Rana.png"
+           alt="Angur Rana" />
+      <span class="sb-tag">Impact Story</span>
+    </div>
+    <div class="sb-text">
+      <p class="sb-label">HelpAge India Impact Stories</p>
+      <h2>The remarkable story of a 65-year-old's journey from vision impairment to restoration.</h2>
+      <a routerLink="/impact-stories" class="btn-outline-red">Read Full Story →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LET'S CREATE ===== -->
+<section class="create-society">
+  <div class="cs-inner">
+    <h2>Let's Create an Age-Inclusive Society for All</h2>
+    <a routerLink="/donate" class="btn-primary">Join Us</a>
+  </div>
+</section>
+
+<!-- ===== WHAT WE DO ===== -->
+<section class="what-we-do" id="explore">
+  <div class="container">
+    <p class="section-label">What we do</p>
+    <h2 class="section-title">HelpAge's Programmes for<br>Holistic Elder Care</h2>
+    <p class="section-desc">At every step, we are together – especially when they need us the most.</p>
+
+    <div class="work-tabs" role="tablist">
+      <button
+        *ngFor="let t of workTabs"
+        role="tab"
+        [class.active]="activeWorkTab === t.id"
+        [attr.aria-selected]="activeWorkTab === t.id"
+        (click)="setTab(t.id)">
+        {{ t.label }}
+      </button>
+    </div>
+
+    <div class="programs-grid">
+      <a class="prog-card"
+         *ngFor="let p of currentPrograms"
+         [routerLink]="p.route">
+        <div class="prog-icon">{{ p.icon }}</div>
+        <h3>{{ p.title }}</h3>
+        <p>{{ p.desc }}</p>
+        <span class="prog-link">Learn More →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IMPACT STATS ===== -->
+<section class="impact-stats">
+  <div class="is-pattern"></div>
+  <div class="container">
+    <p class="section-label light">Our Impact</p>
+    <h2 class="section-title light">
+      This is the impact <span class="you-hl">YOU</span> helped us make in 2025-26
+    </h2>
+    <p class="section-desc light">Your support is helping us reach the unreached elders across India.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card" *ngFor="let s of stats">
+        <div class="stat-num">{{ s.value }}</div>
+        <div class="stat-lbl">{{ s.label }}</div>
+      </div>
+    </div>
+    <div class="stats-cta">
+      <a class="btn-white">Download Annual Report 📥</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IMPACT STORIES ===== -->
+<section class="stories-sec">
+  <div class="container">
+    <p class="section-label">Stories of Change</p>
+    <h2 class="section-title">Impact Stories</h2>
+    <p class="section-desc">Every number represents a life transformed. Here are some of their stories.</p>
+    <div class="stories-grid">
+      <a class="story-card" routerLink="/impact-stories" *ngFor="let s of impactStories">
+        <div class="sc-img">
+          <img [src]="s.img" [alt]="s.title" loading="lazy" />
+          <span class="sc-cat">{{ s.category }}</span>
+        </div>
+        <div class="sc-body">
+          <span class="sc-date">{{ s.date }}</span>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.desc }}</p>
+          <span class="sc-more">Read Story →</span>
+        </div>
+      </a>
+    </div>
+    <div class="sec-cta">
+      <a routerLink="/impact-stories" class="btn-primary">View All Impact Stories</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GET INVOLVED ===== -->
+<section class="gi-sec">
+  <div class="container">
+    <p class="section-label">Make a Difference</p>
+    <h2 class="section-title">Ways to Get Involved</h2>
+    <div class="gi-grid">
+      <div class="gi-card gi-volunteer">
+        <span class="gi-ico">🙋</span>
+        <h3>Volunteer</h3>
+        <p>Give your time and skills to make a difference in an elder's life near you.</p>
+        <a routerLink="/get-involved" class="gi-btn">Join as Volunteer →</a>
+      </div>
+      <div class="gi-card gi-donate">
+        <span class="gi-ico">❤️</span>
+        <h3>Donate</h3>
+        <p>Your donation, big or small, transforms the lives of elderly Indians.</p>
+        <a routerLink="/donate" class="gi-btn">Donate Now →</a>
+      </div>
+      <div class="gi-card gi-corporate">
+        <span class="gi-ico">🏢</span>
+        <h3>Corporate CSR</h3>
+        <p>Partner with us through CSR to create meaningful elder care impact.</p>
+        <a routerLink="/get-involved" class="gi-btn">Partner With Us →</a>
+      </div>
+      <div class="gi-card gi-legacy">
+        <span class="gi-ico">📜</span>
+        <h3>Legacy Giving</h3>
+        <p>Leave a lasting legacy by including HelpAge India in your will.</p>
+        <a routerLink="/get-involved" class="gi-btn">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>

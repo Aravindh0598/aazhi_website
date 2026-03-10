@@ -1,0 +1,100 @@
+<!-- Newsletter -->
+<section class="newsletter-band">
+  <div class="nl-inner">
+    <p>Stay up-to-date with all our latest developments and work.</p>
+    <div class="nl-form">
+      <input type="email" [(ngModel)]="email" placeholder="Enter your email address" aria-label="Email" />
+      <button (click)="onSubscribe()">Subscribe Now</button>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a routerLink="/home">
+          <img src="https://www.helpageindia.org/wp-content/themes/astra-child/assets/logo.webp"
+               alt="HelpAge India" class="footer-logo" />
+        </a>
+        <address>
+          C–14 Qutab Institutional Area<br>New Delhi – 110016
+        </address>
+        <div class="footer-contacts">
+          <a href="mailto:contact@helpageindia.org">📧 contact&#64;helpageindia.org</a>
+          <a href="tel:01141688955">📞 011-41688955</a>
+          <span>🕐 Mon – Fri 9:15 AM to 5:15 PM</span>
+        </div>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/helpageindiaspage" target="_blank" rel="noopener" class="soc" aria-label="Facebook">f</a>
+          <a href="https://twitter.com/Helpageindia" target="_blank" rel="noopener" class="soc" aria-label="Twitter">𝕏</a>
+          <a href="https://www.instagram.com/helpageindia/" target="_blank" rel="noopener" class="soc" aria-label="Instagram">📸</a>
+          <a href="https://in.linkedin.com/company/helpage-india" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn">in</a>
+          <a href="https://www.youtube.com/user/HIAgecare" target="_blank" rel="noopener" class="soc" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+
+      <!-- About Us -->
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <ul>
+          <li><a routerLink="/about-us">About HelpAge India</a></li>
+          <li><a routerLink="/about-us">Awards &amp; Recognition</a></li>
+          <li><a routerLink="/about-us">Financials</a></li>
+          <li><a routerLink="/about-us">Publications</a></li>
+          <li><a routerLink="/our-work/advocacy">Research</a></li>
+          <li><a routerLink="/partners">Partners</a></li>
+          <li><a routerLink="/blog">News</a></li>
+        </ul>
+      </div>
+
+      <!-- Support Us -->
+      <div class="footer-col">
+        <h4>Support Us</h4>
+        <ul>
+          <li><a routerLink="/advantage-60">AdvantAge 60</a></li>
+          <li><a routerLink="/home">Sab Ki Diwali</a></li>
+          <li><a routerLink="/walk-in-my-shoes">Walk in My Shoes</a></li>
+          <li><a routerLink="/home">Be The Hero They Deserve</a></li>
+          <li><a routerLink="/disaster-relief">Flood Relief 2025</a></li>
+          <li><a routerLink="/home">Online Store</a></li>
+        </ul>
+      </div>
+
+      <!-- Important Links -->
+      <div class="footer-col">
+        <h4>Important Links</h4>
+        <ul>
+          <li><a routerLink="/home">Tenders</a></li>
+          <li><a routerLink="/home">Job Openings</a></li>
+          <li><a routerLink="/home">Privacy Policy</a></li>
+          <li><a routerLink="/home">Terms and Conditions</a></li>
+          <li><a routerLink="/home">Donation Refund Policy</a></li>
+          <li><a routerLink="/contact">Contact Us</a></li>
+          <li><a routerLink="/home">Brochure</a></li>
+          <li><a routerLink="/home">Annual Report</a></li>
+          <li><a routerLink="/our-work/advocacy">SAVE</a></li>
+        </ul>
+      </div>
+
+      <!-- UPI -->
+      <div class="footer-col footer-upi">
+        <h4>Pay using any UPI Apps</h4>
+        <img src="https://www.helpageindia.org/wp-content/uploads/2024/07/upi-qr-code.svg"
+             alt="UPI QR Code" class="upi-qr" />
+        <p class="upi-id"><strong>UPI / VPA ID:</strong> helpageindia&#64;sc</p>
+        <p><strong>Org. Name:</strong> HelpAge India</p>
+        <a routerLink="/donate" class="btn-footer-donate">Donate Now ❤️</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-container">
+      <p>© {{ currentYear }} HelpAge India. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
