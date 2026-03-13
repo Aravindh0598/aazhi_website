@@ -92,7 +92,7 @@
 <section class="what-we-do" id="explore">
   <div class="container">
     <p class="section-label">What we do</p>
-    <h2 class="section-title">HelpAge's Programmes for<br>Holistic Elder Care</h2>
+    <h2 class="section-title">Programmes for Holistic Support for Persons with<br>Disabilities</h2>
     <p class="section-desc">At every step, we are together – especially when they need us the most.</p>
 
     <div class="work-tabs" role="tablist">
@@ -110,7 +110,9 @@
       <a class="prog-card"
          *ngFor="let p of currentPrograms"
          [routerLink]="p.route">
-        <div class="prog-icon">{{ p.icon }}</div>
+        <div class="prog-icon">
+          <i [class]="p.icon"></i>
+        </div>
         <h3>{{ p.title }}</h3>
         <p>{{ p.desc }}</p>
         <span class="prog-link">Learn More →</span>
@@ -127,7 +129,9 @@
     <h2 class="section-title light">
       This is the impact <span class="you-hl">YOU</span> helped us make in 2025-26
     </h2>
-    <p class="section-desc light">Your support is helping us reach the unreached elders across India.</p>
+    <p class="section-desc light">
+      Your support is helping us empower persons with disabilities and build a more inclusive society across India.
+    </p>
 
     <div class="stats-grid">
       <div class="stat-card" *ngFor="let s of stats">

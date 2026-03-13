@@ -1,0 +1,176 @@
+{
+  "workTabs": [
+    { "id": "healthcare", "label": "Healthcare" },
+    { "id": "agecare", "label": "Agecare" },
+    { "id": "livelihoods", "label": "Livelihoods & Emergencies" },
+    { "id": "advocacy", "label": "Awareness & Advocacy" }
+  ],
+
+  "programsMap": {
+  "healthcare": [
+    {
+      "icon": "fa-solid fa-hospital",
+      "title": "Primary Healthcare",
+      "desc": "Accessible primary healthcare services delivered through mobile medical units and community clinics for persons with disabilities in both rural and urban areas.",
+      "route": "/our-work/healthcare"
+    },
+    {
+      "icon": "fa-solid fa-eye",
+      "title": "Vision Care & Correction",
+      "desc": "Eye screening programs, treatment, and assistive vision support services for persons with visual impairments.",
+      "route": "/our-work/healthcare"
+    },
+    {
+      "icon": "fa-solid fa-brain",
+      "title": "Mental Health Support",
+      "desc": "Counselling, therapy, and awareness programs addressing emotional well-being and mental health challenges for persons with disabilities.",
+      "route": "/our-work/healthcare"
+    },
+    {
+      "icon": "fa-solid fa-laptop-medical",
+      "title": "Telehealth Services",
+      "desc": "Remote consultations with doctors and specialists ensuring accessible healthcare for persons with disabilities who cannot travel easily.",
+      "route": "/our-work/healthcare"
+    },
+    {
+      "icon": "fa-solid fa-hand-holding-medical",
+      "title": "Long-Term & Palliative Care",
+      "desc": "Compassionate care, pain management, and long-term medical support for persons with severe disabilities or chronic health conditions.",
+      "route": "/our-work/healthcare"
+    }
+  ],
+
+  "agecare": [
+    {
+      "icon": "fa-solid fa-phone",
+      "title": "Support Helplines",
+      "desc": "24x7 toll-free helpline providing guidance, legal assistance, counselling and emergency support for persons with disabilities.",
+      "route": "/our-work/agecare"
+    },
+    {
+      "icon": "fa-solid fa-house-medical",
+      "title": "Assisted Living Centres",
+      "desc": "Safe residential facilities offering accessible living spaces, healthcare services and community support for persons with disabilities.",
+      "route": "/our-work/agecare"
+    },
+    {
+      "icon": "fa-solid fa-users",
+      "title": "Community Inclusion Centres",
+      "desc": "Inclusive spaces where persons with disabilities participate in social activities, skill development and community engagement.",
+      "route": "/our-work/agecare"
+    },
+    {
+      "icon": "fa-solid fa-person-walking",
+      "title": "Rehabilitation & Physiocare",
+      "desc": "Physiotherapy and rehabilitation services helping persons with disabilities improve mobility, strength and independence.",
+      "route": "/our-work/agecare"
+    },
+    {
+      "icon": "fa-solid fa-hand-holding-heart",
+      "title": "Caregiver Training",
+      "desc": "Training programmes for families and caregivers to provide better care and support for persons with disabilities.",
+      "route": "/our-work/agecare"
+    },
+    {
+      "icon": "fa-solid fa-wheelchair",
+      "title": "Assistive Devices",
+      "desc": "Providing wheelchairs, walkers, prosthetics and other assistive devices to improve mobility and daily living.",
+      "route": "/our-work/agecare"
+    }
+  ],
+
+  "livelihoods": [
+    {
+      "icon": "fa-solid fa-handshake",
+      "title": "Self Help Groups",
+      "desc": "Community-based savings groups and micro-finance initiatives supporting persons with disabilities to build financial independence.",
+      "route": "/our-work/livelihoods"
+    },
+    {
+      "icon": "fa-solid fa-triangle-exclamation",
+      "title": "Disaster Support & Relief",
+      "desc": "Emergency response and inclusive disaster relief ensuring persons with disabilities receive support during floods, cyclones and other crises.",
+      "route": "/our-work/livelihoods"
+    }
+  ],
+
+  "advocacy": [
+    {
+      "icon": "fa-solid fa-chalkboard-user",
+      "title": "Awareness & Training Workshops",
+      "desc": "Workshops and awareness programs for communities, institutions and government bodies to promote inclusion and rights of persons with disabilities.",
+      "route": "/our-work/advocacy"
+    },
+    {
+      "icon": "fa-solid fa-people-group",
+      "title": "Youth Inclusion Programs",
+      "desc": "Engaging students and young volunteers to promote empathy, inclusion and support for persons with disabilities.",
+      "route": "/our-work/advocacy"
+    },
+    {
+      "icon": "fa-solid fa-scale-balanced",
+      "title": "Policy Advocacy",
+      "desc": "Working with governments and institutions to strengthen laws, accessibility standards and policies protecting the rights of persons with disabilities.",
+      "route": "/our-work/advocacy"
+    },
+    {
+      "icon": "fa-solid fa-microscope",
+      "title": "Research & Knowledge",
+      "desc": "Conducting research and generating evidence to improve disability inclusion, policy frameworks and social awareness.",
+      "route": "/our-work/advocacy"
+    }
+  ]
+  },
+
+  "stats": [
+    { "value": "2,000,000", "label": "Elder lives were transformed" },
+    { "value": "1,25,000", "label": "Elders received support through the Elder Helpline" },
+    { "value": "13,00,000", "label": "Elders received primary healthcare at their doorstep" },
+    { "value": "40,000", "label": "Elders became independent through Elder Self Help Groups" },
+    { "value": "35,000", "label": "Elders received vision restoration support" },
+    { "value": "77,000", "label": "Elders received digital, financial and legal literacy" }
+  ],
+
+  "impactStories": [
+    {
+      "img": "https://www.helpageindia.org/wp-content/uploads/2025/08/Angur-Rana.png",
+      "category": "Livelihoods",
+      "date": "August 2025",
+      "title": "Angur Rana's Journey from Petals to Profits",
+      "desc": "At 65, Angur Rana transformed her life through HelpAge India's Elder Self Help Group, turning flower cultivation into a thriving income source."
+    },
+    {
+      "img": "https://picsum.photos/seed/elder2/400/260",
+      "category": "Healthcare",
+      "date": "July 2025",
+      "title": "Seeing the World Again: A Vision Restoration Story",
+      "desc": "A remarkable journey from vision impairment to restoration through HelpAge India's eye care programme."
+    },
+    {
+      "img": "https://picsum.photos/seed/elder3/400/260",
+      "category": "Elder Helpline",
+      "date": "June 2025",
+      "title": "A Call That Changed Everything",
+      "desc": "How one call to our elder helpline rescued a 78-year-old woman from an abusive situation and restored her dignity."
+    }
+  ],
+
+  "heroSlides": [
+    {
+      "img": "https://www.helpageindia.org/wp-content/uploads/2025/08/Angur-Rana.png",
+      "caption": "Let's fill their lives with the colours of joy"
+    },
+    {
+      "img": "https://picsum.photos/seed/elder-health/600/480",
+      "caption": "Healthcare reaching every doorstep"
+    },
+    {
+      "img": "https://picsum.photos/seed/elder-community/600/480",
+      "caption": "Building communities of care & dignity"
+    },
+    {
+      "img": "https://picsum.photos/seed/elder-smile/600/480",
+      "caption": "Empowering elders to live independently"
+    }
+  ]
+}
