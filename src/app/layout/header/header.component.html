@@ -2,7 +2,7 @@
   <div class="header-inner">
 
     <!-- Logo -->
-    <a routerLink="/home" class="logo">
+    <a routerLink="/" class="logo">
       <!--
       <img src="https://www.helpageindia.org/wp-content/uploads/2025/07/hi-logo-new-2048x301-1-250x37.webp"
           alt="HelpAge India" />
@@ -15,11 +15,11 @@
     <nav class="desktop-nav" role="navigation" aria-label="Main Navigation">
       <ul>
         <li>
-          <a routerLink="/home" routerLinkActive="active">Home</a>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
         </li>
 
         <li>
-          <a routerLink="/about-us" routerLinkActive="active">About Us</a>
+          <a routerLink="/about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">About Us</a>
         </li>
 
         <!-- Take Action Dropdown -->
@@ -34,9 +34,6 @@
               <a routerLink="/advantage-60" (click)="closeMobile()">AdvantAge 60</a>
               <div class="mega-sub-label">Archive</div>
               <a routerLink="/walk-in-my-shoes" (click)="closeMobile()">Walk In My Shoes</a>
-              <a routerLink="/home" (click)="closeMobile()">Sab Ki Diwali</a>
-              <a routerLink="/home" (click)="closeMobile()">Ghar Ka Ujala</a>
-              <a routerLink="/home" (click)="closeMobile()">Main Bhi Hoon</a>
               <a routerLink="/home" (click)="closeMobile()">Be the Hero They Deserve</a>
             </div>
             <div class="mega-col">
@@ -100,7 +97,7 @@
           <a routerLink="/get-involved" routerLinkActive="active">Get Involved</a>
         </li>
         <li>
-          <a routerLink="/blog" routerLinkActive="active">Blog</a>
+          <a routerLink="/blog" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Blog</a>
         </li>
         <li>
           <a routerLink="/contact" routerLinkActive="active">Contact</a>

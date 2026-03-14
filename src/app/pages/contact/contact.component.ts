@@ -8,5 +8,22 @@ import { Component } from '@angular/core';
   styleUrl: './contact.component.css'
 })
 export class ContactComponent {
+    submitted = false;
+
+  // Branch dropdown change
+  onBranchChange(event: Event) {
+    const value = (event.target as HTMLSelectElement).value;
+    console.log('Selected branch:', value);
+  }
+
+  // Submit button
+  onSubmit() {
+    this.submitted = true;
+
+    // hide message after 4 seconds (optional)
+    setTimeout(() => {
+      this.submitted = false;
+    }, 4000);
+  }
 
 }

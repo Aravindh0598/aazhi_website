@@ -9,12 +9,19 @@
   text-align: center;
 }
 .nl-inner p {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-primary);
   font-size: clamp(18px, 2.5vw, 26px);
   font-weight: 700;
   color: #fff;
   margin-bottom: 24px;
   line-height: 1.4;
+}
+
+.highlight{
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #c0392b;
+  font-family: var(--font-secondry);
 }
 .nl-form {
   display: flex;

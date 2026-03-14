@@ -1,0 +1,157 @@
+<!-- ── Hero ───────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Impact Stories</span>
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="#" class="breadcrumb-link">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current">Impact Stories</span>
+    </nav>
+    <h1 class="hero-title">Real lives. Real change.</h1>
+    <p class="hero-sub">Stories of dignity, hope and transformation from across India.</p>
+  </div>
+</section>
+
+<!-- ── Main Layout ────────────────────────────────────────── -->
+<section class="stories-section">
+  <div class="container">
+    <div class="stories-layout">
+
+      <!-- ── Stories Column ───────────────────────────────── -->
+      <main class="stories-col">
+
+        <!-- Featured story (first card, full-width) -->
+        <article class="story-card story-card--featured" *ngIf="getFeaturedStory()">
+          <div class="story-card__img-wrap">
+            <img [src]="getFeaturedStory()!.image"
+                 [alt]="getFeaturedStory()!.title"
+                 class="story-card__img" />
+            <span class="story-card__category-badge">
+              {{ getFeaturedStory()!.category }}
+            </span>
+          </div>
+          <div class="story-card__body">
+            <h2 class="story-card__title">
+              <a href="#" class="story-card__title-link">{{ getFeaturedStory()!.title }}</a>
+            </h2>
+            <p class="story-card__excerpt">{{ getFeaturedStory()!.excerpt }}</p>
+            <a href="#" class="story-card__btn">
+              Read More
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Stories grid (remaining cards) -->
+        <div class="stories-grid">
+          <article class="story-card"
+                   *ngFor="let story of getGridStories()">
+            <div class="story-card__img-wrap">
+              <img [src]="story.image" [alt]="story.title" class="story-card__img" />
+              <span class="story-card__category-badge">{{ story.category }}</span>
+            </div>
+            <div class="story-card__body">
+              <h2 class="story-card__title">
+                <a href="#" class="story-card__title-link">{{ story.title }}</a>
+              </h2>
+              <p class="story-card__excerpt">{{ story.excerpt }}</p>
+              <a href="#" class="story-card__btn">
+                Read More
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Empty state -->
+        <div class="empty-state" *ngIf="getFilteredStories().length === 0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <p>No stories found in this category.</p>
+          <button class="btn-clear" (click)="clearFilter()">View all stories</button>
+        </div>
+
+        <!-- ── Pagination ──────────────────────────────────── -->
+        <nav class="pagination" *ngIf="getTotalPages() > 1">
+          <button class="page-btn page-btn--nav"
+                  [class.page-btn--disabled]="currentPage === 1"
+                  (click)="goToPage(currentPage - 1)">
+            ← Previous
+          </button>
+
+          <ng-container *ngFor="let p of getPageNumbers()">
+            <span *ngIf="p === -1" class="page-ellipsis">…</span>
+            <button *ngIf="p !== -1"
+                    class="page-btn"
+                    [class.page-btn--active]="p === currentPage"
+                    (click)="goToPage(p)">{{ p }}</button>
+          </ng-container>
+
+          <button class="page-btn page-btn--nav"
+                  [class.page-btn--disabled]="currentPage === getTotalPages()"
+                  (click)="goToPage(currentPage + 1)">
+            Next →
+          </button>
+        </nav>
+
+      </main>
+
+      <!-- ── Sidebar ──────────────────────────────────────── -->
+      <aside class="sidebar">
+
+        <!-- Category filter -->
+        <div class="sidebar-widget">
+          <h3 class="widget-title">Categories</h3>
+          <ul class="category-list">
+            <li class="category-item"
+                [class.category-item--active]="selectedCategory === ''"
+                (click)="selectCategory('')">
+              <span class="category-name">All Stories</span>
+              <span class="category-count">{{ allStories.length }}</span>
+            </li>
+            <li class="category-item"
+                *ngFor="let cat of categories"
+                [class.category-item--active]="selectedCategory === cat.name"
+                (click)="selectCategory(cat.name)">
+              <span class="category-name">{{ cat.name }}</span>
+              <span class="category-count">{{ cat.count }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Quote block -->
+        <div class="sidebar-quote">
+          <blockquote class="quote-text">
+            "Every elder deserves to live with dignity, care and hope."
+          </blockquote>
+          <cite class="quote-source">HelpAge India</cite>
+        </div>
+
+        <!-- Donate nudge -->
+        <div class="sidebar-donate">
+          <h3 class="donate-title">Be part of the change</h3>
+          <p class="donate-desc">
+            Your support makes stories like these possible for millions of
+            disadvantaged elderly across India.
+          </p>
+          <a href="https://www.helpageindia.org/donate"
+             target="_blank" rel="noopener" class="btn-donate">
+            Donate Now
+          </a>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+</section>

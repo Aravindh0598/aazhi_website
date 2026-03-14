@@ -123,9 +123,9 @@
   },
 
   "stats": [
-    { "value": "2,000,000", "label": "Elder lives were transformed" },
+    { "value": "20,000", "label": "Elder lives were transformed" },
     { "value": "1,25,000", "label": "Elders received support through the Elder Helpline" },
-    { "value": "13,00,000", "label": "Elders received primary healthcare at their doorstep" },
+    { "value": "13,000", "label": "Elders received primary healthcare at their doorstep" },
     { "value": "40,000", "label": "Elders became independent through Elder Self Help Groups" },
     { "value": "35,000", "label": "Elders received vision restoration support" },
     { "value": "77,000", "label": "Elders received digital, financial and legal literacy" }

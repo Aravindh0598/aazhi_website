@@ -7,7 +7,7 @@
   border-bottom: 1px solid #e8e0d8;
   backdrop-filter: blur(12px);
   transition: box-shadow 0.3s ease;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-primary);
 }
 .main-header.scrolled {
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.12);
@@ -16,11 +16,11 @@
 .header-inner {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 44px;
   height: 70px;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 40px;
 }
 
 /* Logo */
@@ -36,7 +36,7 @@
   display: block;
 }
 .logo-text {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
