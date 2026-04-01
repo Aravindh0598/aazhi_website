@@ -159,6 +159,7 @@
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
+  margin-left: auto;
 }
 .btn-donate {
   display: flex;
@@ -212,14 +213,19 @@
 /* Mobile Nav */
 .mobile-nav {
   display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
   background: #fff;
-  border-top: 1px solid #f0ebe5;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s ease;
+  z-index: 998;
 }
 .mobile-nav.open {
-  max-height: 100vh;
+  max-height: calc(100vh - 70px);
   overflow-y: auto;
 }
 .mobile-nav ul {
@@ -261,10 +267,45 @@
   border: none;
   box-shadow: 0 4px 16px rgba(192, 57, 43, 0.35);
 }
+.menu-icon {
+  margin-right: 6px;
+  color: #c0392b;
+  font-size: 1.1em;
+}
+.mobile-donate-btn .menu-icon {
+  color: #fff;
+}
 
 /* Responsive */
 @media (max-width: 1024px) {
+  .header-inner {
+    padding: 0 20px;
+    gap: 15px;
+  }
+  .logo-text {
+    font-size: 20px;
+  }
+  .btn-donate {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
   .desktop-nav { display: none; }
   .mobile-toggle { display: flex; }
   .mobile-nav { display: block; }
+}
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 0 16px;
+    gap: 10px;
+  }
+  .logo-text {
+    font-size: 18px;
+  }
+  .btn-donate {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  .btn-donate img {
+    height: 14px;
+  }
 }
