@@ -20,12 +20,30 @@
       <!-- ── Stories Column ───────────────────────────────── -->
       <main class="stories-col">
 
+        <!-- Loading state -->
+        <div class="empty-state" *ngIf="loading">
+          <p>Loading stories...</p>
+        </div>
+
         <!-- Featured story (first card, full-width) -->
-        <article class="story-card story-card--featured" *ngIf="getFeaturedStory()">
+        <article class="story-card story-card--featured"
+                 *ngIf="!loading && getFeaturedStory()">
           <div class="story-card__img-wrap">
-            <img [src]="getFeaturedStory()!.image"
-                 [alt]="getFeaturedStory()!.title"
-                 class="story-card__img" />
+
+            <!-- Video -->
+            <ng-container *ngIf="getFeaturedStory()!.media_type === 'video'; else featuredImg">
+              <video [src]="getFeaturedStory()!.image"
+                     class="story-card__img"
+                     autoplay muted loop playsinline></video>
+            </ng-container>
+
+            <!-- Image -->
+            <ng-template #featuredImg>
+              <img [src]="getFeaturedStory()!.image"
+                   [alt]="getFeaturedStory()!.title"
+                   class="story-card__img" />
+            </ng-template>
+
             <span class="story-card__category-badge">
               {{ getFeaturedStory()!.category }}
             </span>
@@ -47,11 +65,23 @@
         </article>
 
         <!-- Stories grid (remaining cards) -->
-        <div class="stories-grid">
+        <div class="stories-grid" *ngIf="!loading">
           <article class="story-card"
                    *ngFor="let story of getGridStories()">
             <div class="story-card__img-wrap">
-              <img [src]="story.image" [alt]="story.title" class="story-card__img" />
+
+              <!-- Video -->
+              <ng-container *ngIf="story.media_type === 'video'; else gridImg">
+                <video [src]="story.image"
+                       class="story-card__img"
+                       muted playsinline></video>
+              </ng-container>
+
+              <!-- Image -->
+              <ng-template #gridImg>
+                <img [src]="story.image" [alt]="story.title" class="story-card__img" />
+              </ng-template>
+
               <span class="story-card__category-badge">{{ story.category }}</span>
             </div>
             <div class="story-card__body">
@@ -72,7 +102,8 @@
         </div>
 
         <!-- Empty state -->
-        <div class="empty-state" *ngIf="getFilteredStories().length === 0">
+        <div class="empty-state"
+             *ngIf="!loading && getFilteredStories().length === 0">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <circle cx="11" cy="11" r="8"/>
             <line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -82,7 +113,7 @@
         </div>
 
         <!-- ── Pagination ──────────────────────────────────── -->
-        <nav class="pagination" *ngIf="getTotalPages() > 1">
+        <nav class="pagination" *ngIf="!loading && getTotalPages() > 1">
           <button class="page-btn page-btn--nav"
                   [class.page-btn--disabled]="currentPage === 1"
                   (click)="goToPage(currentPage - 1)">
