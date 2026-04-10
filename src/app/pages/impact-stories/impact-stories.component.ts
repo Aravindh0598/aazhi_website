@@ -33,8 +33,8 @@ export class ImpactStoriesComponent implements OnInit {
   categories: StoryCategory[] = [];
   allStories: ImpactStory[] = [];
 
-  private apiService = inject(ApiService);
-  readonly backendStorageUrl = 'http://localhost:8000/storage/';
+  public apiService = inject(ApiService);
+
 
   ngOnInit(): void {
     this.apiService.getImpactStories().subscribe({
@@ -44,7 +44,7 @@ export class ImpactStoriesComponent implements OnInit {
             id: item.id,
             title: item.title,
             excerpt: item.description,
-            image: item.image.startsWith('http') ? item.image : this.backendStorageUrl + item.image,
+            image: item.image.startsWith('http') ? item.image : this.apiService.storageUrl + item.image,
             category: item.tag_category?.name || 'General',
             slug: item.id.toString(), // Using ID since slug might not be in DB
             date: new Date(item.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })

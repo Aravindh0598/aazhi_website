@@ -17,10 +17,7 @@ export class FooterComponent implements OnInit {
   homeSettings: any = null;
   contacts: any[] = [];
 
-  private apiService = inject(ApiService);
-
-  // Base URL for images from Laravel storage
-  readonly backendStorageUrl = 'http://localhost:8000/storage/';
+  public apiService = inject(ApiService);
 
   ngOnInit(): void {
     this.apiService.homeSettings$.subscribe(settings => {
@@ -42,10 +39,10 @@ export class FooterComponent implements OnInit {
   onSubscribe(): void {
     if (this.email) {
       this.apiService.subscribe(this.email).subscribe({
-        next: (response) => {
+        next: (response: any) => {
           if (response.success) {
             alert(response.message);
-            this.email = '';
+            this.email = ''; // Reset input
           }
         },
         error: (err) => {

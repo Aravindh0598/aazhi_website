@@ -5,6 +5,9 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { GetInvolvedComponent } from './pages/get-involved/get-involved.component';
 import { ImpactStoriesComponent } from './pages/impact-stories/impact-stories.component';
+import { GalleryComponent } from './pages/gallery/gallery.component';
+import { GalleryDetailComponent } from './pages/gallery/gallery-detail/gallery-detail.component';
+import { DonateComponent } from './pages/donate/donate.component';
 
 export const routes: Routes = [
   {
@@ -28,4 +31,7 @@ export const routes: Routes = [
   { path: 'blog', component:BlogComponent},
   { path: 'get-involved', component: GetInvolvedComponent},
   { path: 'impact-stories', component: ImpactStoriesComponent},
+  { path: 'gallery', component: GalleryComponent },
+  { path: 'gallery/:id', component: GalleryDetailComponent },
+  { path: 'donate', component: DonateComponent },
 ];

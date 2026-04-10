@@ -1,0 +1,320 @@
+.donate-page {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-small {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Progress Bar */
+.progress-container {
+    margin-bottom: 50px;
+}
+
+.progress-circles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.circle.active {
+    background: #e6212e;
+    color: white;
+}
+
+.line {
+    width: 100px;
+    height: 2px;
+    background: #e0e0e0;
+}
+
+.line.active {
+    background: #e6212e;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 10px;
+}
+
+.progress-labels span {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Card Styling */
+.card {
+    background: white;
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.form-title {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.form-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Form Grid */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.required {
+    color: #e6212e;
+}
+
+.form-group input, 
+.form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: #e6212e;
+}
+
+/* Hide number input spinners */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.btn-continue {
+    margin-top: 40px;
+    width: 100%;
+    padding: 16px;
+    background: #e6212e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: background 0.3s ease;
+}
+
+.btn-continue:hover {
+    background: #c21a25;
+}
+
+/* Payment Card */
+.btn-back-step {
+    background: none;
+    border: none;
+    color: #666;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.payment-info {
+    text-align: center;
+}
+
+.upi-box {
+    background: #f1f3f5;
+    padding: 15px 25px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.upi-box .label {
+    font-weight: 600;
+    color: #666;
+}
+
+.upi-id {
+    font-weight: 700;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.btn-copy {
+    background: none;
+    border: none;
+    color: #e6212e;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.qr-container {
+    margin-bottom: 40px;
+}
+
+.qr-image {
+    max-width: 250px;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.qr-help {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.donation-summary {
+    background: #fff8f8;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border: 1px dashed #e6212e;
+}
+
+.donation-summary p {
+    margin: 5px 0;
+    color: #444;
+}
+
+.btn-home {
+    display: inline-block;
+    text-decoration: none;
+    color: #e6212e;
+    font-weight: 600;
+    border-bottom: 2px solid #e6212e;
+    padding-bottom: 2px;
+}
+
+.transaction-input-group {
+    margin-bottom: 30px;
+    text-align: left;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.transaction-input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.transaction-input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: center;
+    transition: border-color 0.3s ease;
+}
+
+.transaction-input-group input:focus {
+    outline: none;
+    border-color: #e6212e;
+}
+
+.input-hint {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 6px;
+}
+
+.btn-submit-donation {
+    width: 100%;
+    padding: 16px;
+    background: #28a745; /* Success Green */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit-donation:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+.btn-submit-donation:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .full-width {
+        grid-column: span 1;
+    }
+    .card {
+        padding: 30px 20px;
+    }
+}

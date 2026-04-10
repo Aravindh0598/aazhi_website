@@ -141,7 +141,7 @@
       <!-- UPI -->
       <div class="footer-col footer-upi">
         <h4>Pay using any UPI Apps</h4>
-        <img [src]="homeSettings?.upi_qr_code ? backendStorageUrl + homeSettings.upi_qr_code : 'assets/images/QR.png'"
+        <img [src]="homeSettings?.upi_qr_code ? apiService.storageUrl + homeSettings.upi_qr_code : 'assets/images/QR.png'"
              alt="UPI QR Code" class="upi-qr" />
         <p class="upi-id"><strong>UPI / VPA ID:</strong> aazhifoundation&#64;sbi</p>
         <p><strong>Org. Name:</strong> AAZHI FOUNDATION</p>

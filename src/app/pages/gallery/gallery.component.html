@@ -1,0 +1,27 @@
+<section class="gallery-hero">
+  <div class="container">
+    <h1>Our Gallery</h1>
+    <p>A visual journey through our events and impact.</p>
+  </div>
+</section>
+
+<section class="gallery-grid-section">
+  <div class="container">
+    <div *ngIf="loading" class="loader">Loading Gallery...</div>
+    
+    <div *ngIf="!loading && galleries.length === 0" class="empty-state">
+      <p>No gallery events found.</p>
+    </div>
+
+    <div class="gallery-grid" *ngIf="!loading && galleries.length > 0">
+      <div class="gallery-card" *ngFor="let g of galleries" [routerLink]="['/gallery', g.id]">
+        <div class="card-img">
+          <img [src]="getThumbnail(g)" [alt]="g.event_name" loading="lazy">
+          <div class="card-overlay">
+            <h3 class="event-title">{{ g.event_name }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

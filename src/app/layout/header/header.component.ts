@@ -16,11 +16,8 @@ export class HeaderComponent implements OnInit {
   activeDropdown = '';
   homeSettings: any = null;
 
-  private apiService = inject(ApiService);
+  public apiService = inject(ApiService);
   private router = inject(Router);
-
-  // Base URL for images from Laravel storage
-  readonly backendStorageUrl = 'http://localhost:8000/storage/';
 
   ngOnInit(): void {
     this.apiService.homeSettings$.subscribe(settings => {

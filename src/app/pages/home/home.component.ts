@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   impactStories: any[] = [];
   heroSlides: any[] = [];
 
-  private apiService = inject(ApiService);
+  public apiService = inject(ApiService);
   private http = inject(HttpClient);
 
   // Involvement Form Logic
@@ -44,8 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     message: ''
   };
 
-  // Base URL for images from Laravel storage
-  readonly backendStorageUrl = 'http://localhost:8000/storage/';
+
 
   constructor() {}
 
@@ -70,7 +69,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       next: (response) => {
         if (response.success && response.data && response.data.length) {
           this.heroSlides = response.data.map((item: any) => ({
-            img: item.image.startsWith('http') ? item.image : this.backendStorageUrl + item.image,
+            img: item.image.startsWith('http') ? item.image : this.apiService.storageUrl + item.image,
             caption: item.title
           }));
         }
@@ -83,7 +82,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       next: (response) => {
         if (response.success && response.data && response.data.length) {
           this.impactStories = response.data.map((item: any) => ({
-            img: item.image.startsWith('http') ? item.image : this.backendStorageUrl + item.image,
+            img: item.image.startsWith('http') ? item.image : this.apiService.storageUrl + item.image,
             category: item.tag_category?.name || 'General',
             date: new Date(item.created_at).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
             title: item.title,

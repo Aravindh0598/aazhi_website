@@ -3,7 +3,7 @@
 
     <!-- Logo -->
     <a routerLink="/" class="logo">
-      <img [src]="homeSettings?.main_logo ? backendStorageUrl + homeSettings.main_logo : 'assets/aazhi_logo_nobg.png'" 
+      <img [src]="homeSettings?.main_logo ? apiService.storageUrl + homeSettings.main_logo : 'assets/aazhi_logo_nobg.png'" 
            [alt]="(homeSettings?.website_name || 'Aazhi Foundation') + ' Logo'" 
            class="brand-logo" />
       <span class="logo-text">{{ homeSettings?.website_name || 'Aazhi Foundation' }}</span>
@@ -20,65 +20,8 @@
           <a routerLink="/about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">About Us</a>
         </li>
 
-        <!-- Take Action Dropdown -->
-        <li class="has-dropdown" (click)="toggleDropdown('takeAction')">
-          <span [class.active-parent]="activeDropdown==='takeAction'">
-            Take Action <i class="arrow" [class.open]="activeDropdown==='takeAction'">▾</i>
-          </span>
-          <div class="mega-menu" *ngIf="activeDropdown==='takeAction'" (click)="$event.stopPropagation()">
-            <div class="mega-col">
-              <span class="mega-heading">Campaigns</span>
-              <div class="mega-sub-label">Live Campaign</div>
-              <a routerLink="/advantage-60" (click)="closeMobile()">AdvantAge 60</a>
-              <div class="mega-sub-label">Archive</div>
-              <a routerLink="/walk-in-my-shoes" (click)="closeMobile()">Walk In My Shoes</a>
-              <a routerLink="/home" (click)="closeMobile()">Be the Hero They Deserve</a>
-            </div>
-
-            <div class="mega-col">
-              <span class="mega-heading">More</span>
-              <a routerLink="/home" (click)="closeMobile()">Online Store</a>
-              <a routerLink="/partners" (click)="closeMobile()">Partners</a>
-            </div>
-          </div>
-        </li>
-
-        <!-- Our Work Dropdown -->
-        <li class="has-dropdown" (click)="toggleDropdown('ourWork')">
-          <span [class.active-parent]="activeDropdown==='ourWork'">
-            Our Work <i class="arrow" [class.open]="activeDropdown==='ourWork'">▾</i>
-          </span>
-          <div class="mega-menu wide" *ngIf="activeDropdown==='ourWork'" (click)="$event.stopPropagation()">
-            <div class="mega-col">
-              <span class="mega-heading">Healthcare</span>
-              <a routerLink="/our-work/healthcare" (click)="closeMobile()">Primary Healthcare</a>
-              <a routerLink="/our-work/healthcare" (click)="closeMobile()">Vision Restoration &amp; Correction</a>
-              <a routerLink="/our-work/healthcare" (click)="closeMobile()">Mental Health</a>
-              <a routerLink="/our-work/healthcare" (click)="closeMobile()">Telehealth</a>
-              <a routerLink="/our-work/healthcare" (click)="closeMobile()">Palliative Care</a>
-            </div>
-            <div class="mega-col">
-              <span class="mega-heading">Agecare</span>
-              <a routerLink="/our-work/agecare" (click)="closeMobile()">Elder Helplines</a>
-              <a routerLink="/our-work/agecare" (click)="closeMobile()">Senior Care Homes</a>
-              <a routerLink="/our-work/agecare" (click)="closeMobile()">Active Ageing Centres</a>
-              <a routerLink="/our-work/agecare" (click)="closeMobile()">Physiocare</a>
-              <a routerLink="/our-work/agecare" (click)="closeMobile()">Caregiving</a>
-              <a routerLink="/our-work/agecare" (click)="closeMobile()">Mobility Aids</a>
-              <a routerLink="/our-work/agecare" (click)="closeMobile()">Support a Gran</a>
-              <a routerLink="/our-work/agecare" (click)="closeMobile()">Elder Help Desk</a>
-            </div>
-            <div class="mega-col">
-              <span class="mega-heading">Livelihoods</span>
-              <a routerLink="/our-work/livelihoods" (click)="closeMobile()">Elder Self Help Groups</a>
-
-              <span class="mega-heading" style="margin-top:14px">Awareness &amp; Advocacy</span>
-              <a routerLink="/our-work/advocacy" (click)="closeMobile()">Awareness &amp; Training Workshops</a>
-              <a routerLink="/our-work/advocacy" (click)="closeMobile()">SAVE</a>
-              <a routerLink="/our-work/advocacy" (click)="closeMobile()">Policy Advocacy</a>
-              <a routerLink="/our-work/advocacy" (click)="closeMobile()">Research</a>
-            </div>
-          </div>
+        <li>
+          <a routerLink="/gallery" routerLinkActive="active">Gallery</a>
         </li>
 
         <li>
@@ -115,16 +58,7 @@
     <ul>
       <li><a routerLink="/home" (click)="closeMobile()"><i class="fa-solid fa-house fa-fw menu-icon"></i> Home</a></li>
       <li><a routerLink="/about-us" (click)="closeMobile()"><i class="fa-solid fa-circle-info fa-fw menu-icon"></i> About Us</a></li>
-      <li class="mobile-section-label"><i class="fa-solid fa-bullhorn fa-fw menu-icon"></i> Take Action</li>
-      <li class="indent"><a routerLink="/advantage-60" (click)="closeMobile()">AdvantAge 60</a></li>
-      <li class="indent"><a routerLink="/walk-in-my-shoes" (click)="closeMobile()">Walk In My Shoes</a></li>
-
-      <li class="indent"><a routerLink="/partners" (click)="closeMobile()">Partners</a></li>
-      <li class="mobile-section-label"><i class="fa-solid fa-briefcase fa-fw menu-icon"></i> Our Work</li>
-      <li class="indent"><a routerLink="/our-work/healthcare" (click)="closeMobile()">Healthcare</a></li>
-      <li class="indent"><a routerLink="/our-work/agecare" (click)="closeMobile()">Agecare</a></li>
-      <li class="indent"><a routerLink="/our-work/livelihoods" (click)="closeMobile()">Livelihoods</a></li>
-      <li class="indent"><a routerLink="/our-work/advocacy" (click)="closeMobile()">Awareness &amp; Advocacy</a></li>
+      <li><a routerLink="/gallery" (click)="closeMobile()"><i class="fa-solid fa-images fa-fw menu-icon"></i> Gallery</a></li>
       <li><a routerLink="/impact-stories" (click)="closeMobile()"><i class="fa-solid fa-star fa-fw menu-icon"></i> Impact Stories</a></li>
       <li><a routerLink="/get-involved" (click)="closeMobile()"><i class="fa-solid fa-handshake-angle fa-fw menu-icon"></i> Get Involved</a></li>
       <li><a routerLink="/blog" (click)="closeMobile()"><i class="fa-solid fa-pen-to-square fa-fw menu-icon"></i> Blog</a></li>
