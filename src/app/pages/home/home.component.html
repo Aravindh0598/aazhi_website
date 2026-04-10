@@ -163,7 +163,7 @@
         <div class="sc-body">
           <span class="sc-date">{{ s.date }}</span>
           <h3>{{ s.title }}</h3>
-          <p>{{ s.desc }}</p>
+          <p [innerHTML]="s.desc"></p>
           <span class="sc-more">Read Story →</span>
         </div>
       </a>
@@ -189,7 +189,7 @@
         </div>
         <h3>Volunteer</h3>
         <p>Give your time and skills to make a difference in an elder's life near you.</p>
-        <a routerLink="/get-involved" class="gi-btn">Join as Volunteer</a>
+        <button class="gi-btn" (click)="openInvolvement('volunteer')">Join as Volunteer</button>
       </div>
 
       <div class="gi-card donate">
@@ -198,7 +198,7 @@
         </div>
         <h3>Donate</h3>
         <p>Your donation, big or small, transforms the lives of elderly Indians.</p>
-        <a routerLink="/donate" class="gi-btn">Donate Now</a>
+        <button class="gi-btn" (click)="openInvolvement('donate')">Enquire to Donate</button>
       </div>
 
       <div class="gi-card corporate">
@@ -207,7 +207,7 @@
         </div>
         <h3>Corporate CSR</h3>
         <p>Partner with us through CSR to create meaningful elder care impact.</p>
-        <a routerLink="/get-involved" class="gi-btn">Partner With Us</a>
+        <button class="gi-btn" (click)="openInvolvement('corporate')">Partner With Us</button>
       </div>
 
       <div class="gi-card legacy">
@@ -215,11 +215,58 @@
           <i class="fa-solid fa-scroll"></i>
         </div>
         <h3>Legacy Giving</h3>
-        <p>Leave a lasting legacy by including HelpAge India in your will.</p>
-        <a routerLink="/get-involved" class="gi-btn">Learn More</a>
+        <p>Leave a lasting legacy by including Aazhi Foundation in your will.</p>
+        <button class="gi-btn" (click)="openInvolvement('legacy')">Learn More</button>
       </div>
 
     </div>
 
   </div>
 </section>
+
+<!-- ===== INVOLVEMENT MODAL ===== -->
+<div class="modal-overlay" *ngIf="showInvolvementModal" (click)="closeInvolvement()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeInvolvement()">&times;</button>
+    
+    <div class="modal-header">
+      <h3 class="capitalize">{{ involvementForm.type }} Request</h3>
+      <p>Fill out the form below and we'll get back to you.</p>
+    </div>
+
+    <div class="modal-body" *ngIf="!involvementSuccess">
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" [(ngModel)]="involvementForm.name" placeholder="Enter your name" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" [(ngModel)]="involvementForm.email" placeholder="email@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" [(ngModel)]="involvementForm.phone" placeholder="+91 XXXXX XXXXX" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Message (Optional)</label>
+        <textarea rows="3" [(ngModel)]="involvementForm.message" placeholder="How would you like to help?"></textarea>
+      </div>
+
+      <button class="btn-submit-modal" (click)="submitInvolvement()" [disabled]="involvementLoading">
+        {{ involvementLoading ? 'Submitting...' : 'Submit Request' }}
+      </button>
+    </div>
+
+    <div class="modal-success" *ngIf="involvementSuccess">
+        <div class="success-icon">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <h4>Success!</h4>
+        <p>Thank you for your interest. Our team will contact you very soon!</p>
+    </div>
+  </div>
+</div>

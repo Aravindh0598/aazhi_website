@@ -34,7 +34,7 @@
             <h2 class="story-card__title">
               <a href="#" class="story-card__title-link">{{ getFeaturedStory()!.title }}</a>
             </h2>
-            <p class="story-card__excerpt">{{ getFeaturedStory()!.excerpt }}</p>
+            <div class="story-card__excerpt" [innerHTML]="getFeaturedStory()!.excerpt"></div>
             <a href="#" class="story-card__btn">
               Read More
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -58,7 +58,7 @@
               <h2 class="story-card__title">
                 <a href="#" class="story-card__title-link">{{ story.title }}</a>
               </h2>
-              <p class="story-card__excerpt">{{ story.excerpt }}</p>
+              <div class="story-card__excerpt" [innerHTML]="story.excerpt"></div>
               <a href="#" class="story-card__btn">
                 Read More
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -132,20 +132,19 @@
         <!-- Quote block -->
         <div class="sidebar-quote">
           <blockquote class="quote-text">
-            "Every elder deserves to live with dignity, care and hope."
+            "Empowering lives and building a resilient future for every individual in need."
           </blockquote>
-          <cite class="quote-source">HelpAge India</cite>
+          <cite class="quote-source">AAZHI Foundation</cite>
         </div>
 
         <!-- Donate nudge -->
         <div class="sidebar-donate">
           <h3 class="donate-title">Be part of the change</h3>
           <p class="donate-desc">
-            Your support makes stories like these possible for millions of
-            disadvantaged elderly across India.
+            Your support makes stories like these possible for thousands of
+            individuals across our communities.
           </p>
-          <a href="https://www.helpageindia.org/donate"
-             target="_blank" rel="noopener" class="btn-donate">
+          <a routerLink="/donate" class="btn-donate">
             Donate Now
           </a>
         </div>

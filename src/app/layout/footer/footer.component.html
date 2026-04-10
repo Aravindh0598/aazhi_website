@@ -14,47 +14,38 @@
     <div class="footer-grid">
 
       <!-- Brand -->
-<div class="footer-brand">
+      <div class="footer-brand">
+        <h3 class="footer-title">{{ homeSettings?.website_name || 'AAZHI Foundation' }}</h3>
+        
+        <address *ngIf="primaryContact?.address">
+          <i class="fa-solid fa-location-dot"></i>
+          {{ primaryContact.address }}
+        </address>
 
-  <h3 class="footer-title">AAZHI Foundation</h3>
+        <div class="footer-contacts">
+          <a *ngIf="primaryContact?.emails?.length" [href]="'mailto:' + primaryContact.emails[0]">
+            <i class="fa-solid fa-envelope"></i>
+            {{ primaryContact.emails[0] }}
+          </a>
 
-  <address>
-    <i class="fa-solid fa-location-dot"></i>
-    Ambattur, Chennai – 600053
-  </address>
+          <a *ngIf="primaryContact?.phone_numbers?.length" [href]="'tel:' + primaryContact.phone_numbers[0]">
+            <i class="fa-solid fa-phone"></i>
+            {{ primaryContact.phone_numbers[0] }}
+          </a>
 
-  <div class="footer-contacts">
+          <span *ngIf="todayTimings">
+            <i class="fa-solid fa-clock"></i>
+            {{ todayTimings }}
+          </span>
+        </div>
 
-    <a href="mailto:info@aazhi.org">
-      <i class="fa-solid fa-envelope"></i>
-      info&#64;aazhi.org
-    </a>
-
-    <a href="tel:9876543210">
-      <i class="fa-solid fa-phone"></i>
-      9876543210
-    </a>
-
-    <span>
-      <i class="fa-solid fa-clock"></i>
-      Mon – Fri 9:15 AM to 5:15 PM
-    </span>
-
-  </div>
-
-  <div class="footer-socials">
-
-    <a href="#" class="soc"><i class="fa-brands fa-facebook-f"></i></a>
-
-    <a href="#" class="soc"><i class="fa-brands fa-x-twitter"></i></a>
-
-    <a href="#" class="soc"><i class="fa-brands fa-instagram"></i></a>
-
-    <a href="#" class="soc"><i class="fa-brands fa-youtube"></i></a>
-
-  </div>
-
-</div>
+        <div class="footer-socials" *ngIf="primaryContact?.social_media">
+          <a *ngIf="primaryContact.social_media.facebook?.active" [href]="primaryContact.social_media.facebook.link" class="soc" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a *ngIf="primaryContact.social_media.twitter?.active" [href]="primaryContact.social_media.twitter.link" class="soc" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+          <a *ngIf="primaryContact.social_media.instagram?.active" [href]="primaryContact.social_media.instagram.link" class="soc" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a *ngIf="primaryContact.social_media.youtube?.active" [href]="primaryContact.social_media.youtube.link" class="soc" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
 
       <!-- About Us -->
       <div class="footer-col">
@@ -150,7 +141,7 @@
       <!-- UPI -->
       <div class="footer-col footer-upi">
         <h4>Pay using any UPI Apps</h4>
-        <img src="assets/images/QR.png"
+        <img [src]="homeSettings?.upi_qr_code ? backendStorageUrl + homeSettings.upi_qr_code : 'assets/images/QR.png'"
              alt="UPI QR Code" class="upi-qr" />
         <p class="upi-id"><strong>UPI / VPA ID:</strong> aazhifoundation&#64;sbi</p>
         <p><strong>Org. Name:</strong> AAZHI FOUNDATION</p>

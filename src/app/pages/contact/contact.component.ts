@@ -1,14 +1,29 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ApiService } from '../../services/api.service';
+import { Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
 export class ContactComponent {
-    submitted = false;
+  private apiService = inject(ApiService);
+  
+  submitted = false;
+  loading = false;
+  
+  formData = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  };
 
   // Branch dropdown change
   onBranchChange(event: Event) {
@@ -18,12 +33,48 @@ export class ContactComponent {
 
   // Submit button
   onSubmit() {
-    this.submitted = true;
+    if (!this.formData.firstName || !this.formData.email || !this.formData.message) {
+      alert('Please fill in required fields (Name, Email, Message)');
+      return;
+    }
 
-    // hide message after 4 seconds (optional)
-    setTimeout(() => {
-      this.submitted = false;
-    }, 4000);
+    this.loading = true;
+    const submissionData = {
+      name: `${this.formData.firstName} ${this.formData.lastName}`.trim(),
+      email: this.formData.email,
+      subject: this.formData.subject,
+      message: this.formData.message
+      // Phone is not in the migration yet, let's just send what we have
+    };
+
+    this.apiService.submitContactForm(submissionData).subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.submitted = true;
+          this.loading = false;
+          this.resetForm();
+          
+          // hide message after 5 seconds
+          setTimeout(() => {
+            this.submitted = false;
+          }, 5000);
+        }
+      },
+      error: (err) => {
+        this.loading = false;
+        alert(err.error?.message || 'Failed to send message. Please try again.');
+      }
+    });
   }
 
+  resetForm() {
+    this.formData = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: ''
+    };
+  }
 }

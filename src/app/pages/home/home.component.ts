@@ -1,12 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../services/api.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -26,7 +28,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   impactStories: any[] = [];
   heroSlides: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  private apiService = inject(ApiService);
+  private http = inject(HttpClient);
+
+  // Involvement Form Logic
+  showInvolvementModal = false;
+  involvementLoading = false;
+  involvementSuccess = false;
+  
+  involvementForm = {
+    type: '',
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  };
+
+  // Base URL for images from Laravel storage
+  readonly backendStorageUrl = 'http://localhost:8000/storage/';
+
+  constructor() {}
 
   get currentPrograms() {
     return this.programsMap[this.activeWorkTab] ?? [];
@@ -34,13 +55,43 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    // Load JSON data
-    this.http.get<any>('assets/data/home-data.json').subscribe(data => {
+    // Load static JSON data for tabs/programs (as these aren't in API yet)
+    this.http.get<any>('/assets/data/home-data.json').subscribe(data => {
       this.workTabs = data.workTabs;
       this.programsMap = data.programsMap;
       this.stats = data.stats;
-      this.impactStories = data.impactStories;
-      this.heroSlides = data.heroSlides;
+      // We'll use these as fallbacks if API is empty
+      if (!this.impactStories.length) this.impactStories = data.impactStories;
+      if (!this.heroSlides.length) this.heroSlides = data.heroSlides;
+    });
+
+    // Fetch dynamic Hero Slides (Welcome Images)
+    this.apiService.getWelcomeImages().subscribe({
+      next: (response) => {
+        if (response.success && response.data && response.data.length) {
+          this.heroSlides = response.data.map((item: any) => ({
+            img: item.image.startsWith('http') ? item.image : this.backendStorageUrl + item.image,
+            caption: item.title
+          }));
+        }
+      },
+      error: (err) => console.error('Failed to load welcome images', err)
+    });
+
+    // Fetch dynamic Impact Stories
+    this.apiService.getImpactStories().subscribe({
+      next: (response) => {
+        if (response.success && response.data && response.data.length) {
+          this.impactStories = response.data.map((item: any) => ({
+            img: item.image.startsWith('http') ? item.image : this.backendStorageUrl + item.image,
+            category: item.tag_category?.name || 'General',
+            date: new Date(item.created_at).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+            title: item.title,
+            desc: item.description
+          }));
+        }
+      },
+      error: (err) => console.error('Failed to load impact stories', err)
     });
 
     // Impact story slider
@@ -69,5 +120,43 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   setHeroSlide(i: number) {
     this.heroSlide = i;
+  }
+
+  // --- Involvement Methods ---
+  openInvolvement(type: string) {
+    this.involvementForm.type = type;
+    this.showInvolvementModal = true;
+    this.involvementSuccess = false;
+  }
+
+  closeInvolvement() {
+    this.showInvolvementModal = false;
+    this.resetInvolvementForm();
+  }
+
+  submitInvolvement() {
+    if (!this.involvementForm.name || !this.involvementForm.email || !this.involvementForm.phone) {
+      alert('Please fill in required fields (Name, Email, Phone)');
+      return;
+    }
+
+    this.involvementLoading = true;
+    this.apiService.submitInvolvementRequest(this.involvementForm).subscribe({
+      next: (res) => {
+        this.involvementLoading = false;
+        if (res.success) {
+          this.involvementSuccess = true;
+          setTimeout(() => this.closeInvolvement(), 4000);
+        }
+      },
+      error: (err) => {
+        this.involvementLoading = false;
+        alert(err.error?.message || 'Submission failed. Please try again.');
+      }
+    });
+  }
+
+  resetInvolvementForm() {
+    this.involvementForm = { type: '', name: '', email: '', phone: '', message: '' };
   }
 }

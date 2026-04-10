@@ -1,6 +1,5 @@
 /* ============================================================
-   HelpAge India — Impact Stories Component
-   Brand Orange : #f47920  |  Dark : #1a1a1a  |  Warm bg : #f9f6f3
+   AAZHI Foundation — Impact Stories Component
    ============================================================ */
 
 :host {
@@ -29,7 +28,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 72% 50%, rgba(244,121,32,.2) 0%, transparent 58%);
+  background: radial-gradient(ellipse at 72% 50%, rgba(150, 40, 27, .2) 0%, transparent 58%);
   pointer-events: none;
 }
 
@@ -42,9 +41,9 @@
 
 .hero-eyebrow {
   display: inline-block;
-  background: rgba(244,121,32,.15);
-  border: 1px solid rgba(244,121,32,.5);
-  color: #f47920;
+  background: rgba(150, 40, 27, 0.1);
+  border: 1px solid rgba(150, 40, 27, 0.5);
+  color: #96281b;
   font-family: Arial, sans-serif;
   font-size: .74rem;
   font-weight: 700;
@@ -65,9 +64,9 @@
 }
 
 .breadcrumb-link { color: rgba(255,255,255,.6); text-decoration: none; transition: color .18s; }
-.breadcrumb-link:hover { color: #f47920; }
+.breadcrumb-link:hover { color: #FFCC00; }
 .breadcrumb-sep { color: rgba(255,255,255,.3); font-size: .75rem; }
-.breadcrumb-current { color: #f47920; font-weight: 600; }
+.breadcrumb-current { color: #FFCC00; font-weight: 600; }
 
 .hero-title {
   font-size: clamp(2rem, 5vw, 3rem);
@@ -142,7 +141,7 @@
   position: absolute;
   top: 14px;
   left: 14px;
-  background: #f47920;
+  background: #96281b;
   color: #fff;
   font-family: Arial, sans-serif;
   font-size: .66rem;
@@ -176,7 +175,7 @@
   text-decoration: none;
   transition: color .18s;
 }
-.story-card__title-link:hover { color: #f47920; }
+.story-card__title-link:hover { color: #96281b; }
 
 .story-card__excerpt {
   font-size: .88rem;
@@ -190,6 +189,10 @@
   overflow: hidden;
 }
 
+.story-card__excerpt :first-child { margin-top: 0; }
+.story-card__excerpt :last-child { margin-bottom: 0; }
+.story-card__excerpt p { margin-bottom: 1em; }
+
 .story-card__btn {
   display: inline-flex;
   align-items: center;
@@ -198,13 +201,13 @@
   font-family: Arial, sans-serif;
   font-size: .76rem;
   font-weight: 700;
-  color: #f47920;
+  color: #96281b;
   text-decoration: none;
   letter-spacing: .06em;
   text-transform: uppercase;
   transition: gap .18s, color .18s;
 }
-.story-card__btn:hover { gap: 11px; color: #d9660d; }
+.story-card__btn:hover { gap: 11px; color: #7a1f15; }
 .story-card__btn svg { width: 13px; height: 13px; transition: transform .18s; }
 .story-card__btn:hover svg { transform: translateX(2px); }
 
@@ -237,7 +240,7 @@
 }
 
 .story-card--featured .story-card__btn {
-  background: #f47920;
+  background: #96281b;
   color: #fff;
   padding: 10px 22px;
   border-radius: 4px;
@@ -245,7 +248,7 @@
   transition: background .2s, transform .15s, gap .18s;
 }
 .story-card--featured .story-card__btn:hover {
-  background: #d9660d;
+  background: #7a1f15;
   transform: translateY(-1px);
   gap: 11px;
 }
@@ -275,8 +278,8 @@
 
 .btn-clear {
   background: none;
-  border: 2px solid #f47920;
-  color: #f47920;
+  border: 2px solid #96281b;
+  color: #96281b;
   padding: 9px 24px;
   border-radius: 4px;
   font-family: Arial, sans-serif;
@@ -287,7 +290,7 @@
   letter-spacing: .06em;
   transition: background .2s, color .2s;
 }
-.btn-clear:hover { background: #f47920; color: #fff; }
+.btn-clear:hover { background: #96281b; color: #fff; }
 
 /* ── Pagination ─────────────────────────────────────────── */
 .pagination {
@@ -314,10 +317,10 @@
 }
 .page-btn:hover:not(.page-btn--disabled):not(.page-btn--active) {
   background: #faf6f2;
-  border-color: #f47920;
-  color: #f47920;
+  border-color: #96281b;
+  color: #96281b;
 }
-.page-btn--active { background: #f47920; border-color: #f47920; color: #fff; font-weight: 700; }
+.page-btn--active { background: #96281b; border-color: #96281b; color: #fff; font-weight: 700; }
 .page-btn--nav { padding: 0 16px; font-weight: 600; }
 .page-btn--disabled { opacity: .35; cursor: not-allowed; }
 .page-ellipsis { font-family: Arial, sans-serif; color: #aaa; padding: 0 4px; line-height: 40px; }
@@ -344,7 +347,7 @@
   color: #1a1a1a;
   margin: 0 0 16px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #f47920;
+  border-bottom: 2px solid #96281b;
 }
 
 /* Category list */
@@ -360,7 +363,7 @@
 }
 .category-item:last-child { border-bottom: none; }
 .category-item:hover .category-name,
-.category-item--active .category-name { color: #f47920; font-weight: 700; }
+.category-item--active .category-name { color: #96281b; font-weight: 700; }
 
 .category-name { font-size: .9rem; color: #3a3a3a; transition: color .18s; }
 
@@ -369,7 +372,7 @@
   font-size: .72rem;
   font-weight: 700;
   color: #fff;
-  background: #f47920;
+  background: #96281b;
   padding: 2px 8px;
   border-radius: 20px;
   min-width: 26px;
@@ -391,7 +394,7 @@
   top: -10px;
   left: 14px;
   font-size: 7rem;
-  color: rgba(244,121,32,.2);
+  color: rgba(255, 204, 0, 0.2);
   font-family: Georgia, serif;
   line-height: 1;
   pointer-events: none;
@@ -411,7 +414,7 @@
   font-family: Arial, sans-serif;
   font-size: .75rem;
   font-weight: 700;
-  color: #f47920;
+  color: #FFCC00;
   letter-spacing: .08em;
   text-transform: uppercase;
   font-style: normal;
@@ -421,7 +424,7 @@
 .sidebar-donate {
   background: #fff;
   border: 1px solid #e8e0d8;
-  border-top: 4px solid #f47920;
+  border-top: 4px solid #96281b;
   border-radius: 12px;
   padding: 24px 22px;
 }
@@ -442,7 +445,7 @@
 
 .btn-donate {
   display: block;
-  background: #f47920;
+  background: #96281b;
   color: #fff;
   text-align: center;
   font-family: Arial, sans-serif;
@@ -455,7 +458,7 @@
   border-radius: 4px;
   transition: background .2s, transform .15s;
 }
-.btn-donate:hover { background: #d9660d; transform: translateY(-1px); }
+.btn-donate:hover { background: #7a1f15; transform: translateY(-1px); }
 
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 1060px) {

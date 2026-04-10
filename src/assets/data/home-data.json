@@ -2,7 +2,7 @@
   "workTabs": [
     { "id": "healthcare", "label": "Healthcare" },
     { "id": "agecare", "label": "Agecare" },
-    { "id": "livelihoods", "label": "Livelihoods & Emergencies" },
+    { "id": "livelihoods", "label": "Livelihoods" },
     { "id": "advocacy", "label": "Awareness & Advocacy" }
   ],
 
@@ -85,13 +85,8 @@
       "title": "Self Help Groups",
       "desc": "Community-based savings groups and micro-finance initiatives supporting persons with disabilities to build financial independence.",
       "route": "/our-work/livelihoods"
-    },
-    {
-      "icon": "fa-solid fa-triangle-exclamation",
-      "title": "Disaster Support & Relief",
-      "desc": "Emergency response and inclusive disaster relief ensuring persons with disabilities receive support during floods, cyclones and other crises.",
-      "route": "/our-work/livelihoods"
     }
+
   ],
 
   "advocacy": [

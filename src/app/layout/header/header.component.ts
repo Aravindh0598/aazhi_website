@@ -1,6 +1,7 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +14,19 @@ export class HeaderComponent implements OnInit {
   scrolled = false;
   mobileMenuOpen = false;
   activeDropdown = '';
+  homeSettings: any = null;
 
-  constructor(private router: Router) {}
+  private apiService = inject(ApiService);
+  private router = inject(Router);
 
-  ngOnInit(): void {}
+  // Base URL for images from Laravel storage
+  readonly backendStorageUrl = 'http://localhost:8000/storage/';
+
+  ngOnInit(): void {
+    this.apiService.homeSettings$.subscribe(settings => {
+      this.homeSettings = settings;
+    });
+  }
 
   @HostListener('window:scroll')
   onScroll(): void {

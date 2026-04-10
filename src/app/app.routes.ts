@@ -16,6 +16,14 @@ export const routes: Routes = [
     component: HomeComponent
   },
   { path: 'about-us', component:AboutComponent},
+  { path: 'our-work/healthcare', redirectTo: 'about-us', pathMatch: 'full' },
+  { path: 'our-work/agecare', redirectTo: 'about-us', pathMatch: 'full' },
+  { path: 'our-work/livelihoods', redirectTo: 'about-us', pathMatch: 'full' },
+  { path: 'our-work/advocacy', redirectTo: 'about-us', pathMatch: 'full' },
+  { path: 'advantage-60', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'walk-in-my-shoes', redirectTo: 'home', pathMatch: 'full' },
+
+  { path: 'partners', redirectTo: 'about-us', pathMatch: 'full' },
   { path: 'contact', component:ContactComponent},
   { path: 'blog', component:BlogComponent},
   { path: 'get-involved', component: GetInvolvedComponent},

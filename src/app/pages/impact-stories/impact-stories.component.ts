@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../../services/api.service';
 
 export interface ImpactStory {
   id: number;
@@ -8,6 +9,7 @@ export interface ImpactStory {
   image: string;
   category: string;
   slug: string;
+  date: string;
 }
 
 export interface StoryCategory {
@@ -22,125 +24,42 @@ export interface StoryCategory {
   templateUrl: './impact-stories.component.html',
   styleUrl: './impact-stories.component.css'
 })
-export class ImpactStoriesComponent {
+export class ImpactStoriesComponent implements OnInit {
 
   selectedCategory = '';
   currentPage = 1;
   readonly storiesPerPage = 12;
 
-  readonly categories: StoryCategory[] = [
-    { name: 'Agecare',                    count: 3  },
-    { name: 'Awareness & Advocacy',       count: 1  },
-    { name: 'Healthcare',                 count: 4  },
-    { name: 'Livelihoods & Emergencies',  count: 5  },
-  ];
+  categories: StoryCategory[] = [];
+  allStories: ImpactStory[] = [];
 
-  readonly allStories: ImpactStory[] = [
-    {
-      id: 1,
-      title: "Angur Rana's Journey from Petals to Profits",
-      excerpt: 'From hardship to independence, Angur Rana transformed her life through an Elder-Self-Help-Group, earning a livelihood and accessing essential government benefits.',
-      image: 'https://www.helpageindia.org/wp-content/uploads/2025/08/Angur-Rana.png',
-      category: 'Livelihoods & Emergencies',
-      slug: 'angur-ranas-journey-from-petals-to-profits',
-    },
-    {
-      id: 2,
-      title: 'Tashi Yangdol & the Transformative Power of Care',
-      excerpt: "With HelpAge's support, Tashi Yangdol found rehabilitation, mobility and peace at our Leh home, transforming hardship into comfort and hope.",
-      image: 'https://www.helpageindia.org/wp-content/uploads/2025/04/Tashi-Yangdol.webp',
-      category: 'Agecare',
-      slug: 'tashi-yangdols-transformative-power-of-care',
-    },
-    {
-      id: 3,
-      title: 'Sacred Incense Lifts Kasiammal to Independence',
-      excerpt: "Through HelpAge's Elder-Self-Help-Group, Kasiammal turned agarbatti-making into financial independence, supporting her family and inspiring her community.",
-      image: 'https://www.helpageindia.org/wp-content/uploads/2024/09/Kasiammal_Puducherry.jpg',
-      category: 'Livelihoods & Emergencies',
-      slug: 'kasiammal-case-story-livelihoods',
-    },
-    {
-      id: 4,
-      title: 'Kanchan Devi Stitches Together Dreams',
-      excerpt: "From disaster to determination, Kanchan Devi used HelpAge's support to build a tailoring enterprise, empowering youth, elders and widows in her village.",
-      image: 'https://www.helpageindia.org/wp-content/uploads/2024/09/Kanchan-Devi_ESHG-Member_HelpAge-India.jpg',
-      category: 'Livelihoods & Emergencies',
-      slug: 'kanchan-devi-stitches-together-dreams',
-    },
-    {
-      id: 5,
-      title: "Tara Devi's Transformation from Labourer to Agriculturist",
-      excerpt: "With HelpAge's support, Tara Devi turned small savings into a successful organic farming business, empowering women and becoming a symbol of rural self-reliance.",
-      image: 'https://www.helpageindia.org/wp-content/uploads/2024/09/Tara-Devi.jpg',
-      category: 'Livelihoods & Emergencies',
-      slug: 'tara-devis-transformation-from-labourer-to-agriculturist',
-    },
-    {
-      id: 6,
-      title: 'A Lifeline of Care for Nani Gopal',
-      excerpt: 'For Nani Gopal and his wife, the Mobile Healthcare Unit provides essential medical care, reassurance and strength to navigate ageing with dignity.',
-      image: 'https://www.helpageindia.org/wp-content/uploads/2024/09/nani-gopal-gas.jpg',
-      category: 'Healthcare',
-      slug: 'nani-gopal-das-mhu',
-    },
-    {
-      id: 7,
-      title: "How Ningavva Regained Life's Radiance",
-      excerpt: "Ningavva's cataract surgery through HelpAge restored her sight, giving her strength, independence and renewed hope after a lifetime of loss.",
-      image: 'https://www.helpageindia.org/wp-content/uploads/2024/09/Ningavva-Kunnur.jpg',
-      category: 'Healthcare',
-      slug: 'vision-restoration-regaining-lifes-radiance',
-    },
-    {
-      id: 8,
-      title: "Kompelli Yadamma's Story of Weaving Independence",
-      excerpt: "From loss to leadership, Yadamma rebuilt her life through HelpAge's Livelihoods support, becoming a source of strength and empowerment for other elders.",
-      image: 'https://www.helpageindia.org/wp-content/uploads/2025/04/Kompelli-Yadamma.webp',
-      category: 'Livelihoods & Emergencies',
-      slug: 'kompelli-yadammas-story-of-weaving-independence',
-    },
-    {
-      id: 9,
-      title: 'When Compassion Guided Vembuli Home',
-      excerpt: 'Timely action and gentle care helped Vembuli reunite with the loved ones who feared they had lost him forever.',
-      image: 'https://www.helpageindia.org/wp-content/uploads/2025/04/Vembuli.webp',
-      category: 'Agecare',
-      slug: 'vembulis-journey-back-home',
-    },
-    {
-      id: 10,
-      title: "The Light That Returned to Sena Bai's Days",
-      excerpt: 'Quiet suffering turned into hope when timely intervention brought Sena Bai care, protection and renewed confidence.',
-      image: 'https://www.helpageindia.org/wp-content/uploads/2025/04/Sena-Bai.webp',
-      category: 'Agecare',
-      slug: 'sena-bais-story-of-restoring-light-dignity',
-    },
-    {
-      id: 11,
-      title: "Shivpatiya Devi's Journey from Abandonment to Abundant Joy",
-      excerpt: 'Abandoned and unable to walk, Shivpatiya Devi found safety, care and renewed independence through dedicated support and a life-changing mobility aid.',
-      image: 'https://www.helpageindia.org/wp-content/uploads/2025/07/Shivpatiya-Devi-1-scaled.jpg',
-      category: 'Healthcare',
-      slug: 'shivpatiya-devis-journey-to-dignity',
-    },
-    {
-      id: 12,
-      title: 'How S. Sreedhar Became a Champion for Digital Safety',
-      excerpt: "Mr. Sreedhar's journey from participant to advocate of HelpAge's Digital Safety programme has strengthened retired railway employees' confidence and online security.",
-      image: 'https://www.helpageindia.org/wp-content/uploads/2025/07/S.-Sreedhar.webp',
-      category: 'Awareness & Advocacy',
-      slug: 'securing-seniors-in-a-digital-world',
-    },
-    {
-      id: 13,
-      title: "Meena's Second Chance at Sight",
-      excerpt: 'A routine eye check-up by HelpAge\'s mobile team uncovered cataracts in both eyes. Within weeks, Meena could see her grandchildren\'s faces clearly for the first time in years.',
-      image: 'https://www.helpageindia.org/wp-content/uploads/2024/09/Ningavva-Kunnur.jpg',
-      category: 'Healthcare',
-      slug: 'meenas-second-chance-at-sight',
-    },
-  ];
+  private apiService = inject(ApiService);
+  readonly backendStorageUrl = 'http://localhost:8000/storage/';
+
+  ngOnInit(): void {
+    this.apiService.getImpactStories().subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.allStories = response.data.map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            excerpt: item.description,
+            image: item.image.startsWith('http') ? item.image : this.backendStorageUrl + item.image,
+            category: item.tag_category?.name || 'General',
+            slug: item.id.toString(), // Using ID since slug might not be in DB
+            date: new Date(item.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+          }));
+
+          // Generate categories from data
+          const catMap = new Map<string, number>();
+          this.allStories.forEach(s => {
+            catMap.set(s.category, (catMap.get(s.category) || 0) + 1);
+          });
+          this.categories = Array.from(catMap.entries()).map(([name, count]) => ({ name, count }));
+        }
+      }
+    });
+  }
 
   // ── Filtering ────────────────────────────────────────────
 

@@ -3,8 +3,10 @@
 
     <!-- Logo -->
     <a routerLink="/" class="logo">
-      <img src="assets/aazhi_logo_nobg.png" alt="Aazhi Foundation Logo" class="brand-logo" />
-      <span class="logo-text">Aazhi Foundation</span>
+      <img [src]="homeSettings?.main_logo ? backendStorageUrl + homeSettings.main_logo : 'assets/aazhi_logo_nobg.png'" 
+           [alt]="(homeSettings?.website_name || 'Aazhi Foundation') + ' Logo'" 
+           class="brand-logo" />
+      <span class="logo-text">{{ homeSettings?.website_name || 'Aazhi Foundation' }}</span>
     </a>
 
     <!-- Desktop Navigation -->
@@ -32,14 +34,7 @@
               <a routerLink="/walk-in-my-shoes" (click)="closeMobile()">Walk In My Shoes</a>
               <a routerLink="/home" (click)="closeMobile()">Be the Hero They Deserve</a>
             </div>
-            <div class="mega-col">
-              <span class="mega-heading">Disaster Relief</span>
-              <div class="mega-sub-label">Archive</div>
-              <a routerLink="/disaster-relief" (click)="closeMobile()">Flood Relief 2025</a>
-              <a routerLink="/disaster-relief" (click)="closeMobile()">Disaster Relief 2024</a>
-              <a routerLink="/disaster-relief" (click)="closeMobile()">Covid 19 Relief Response</a>
-              <a routerLink="/disaster-relief" (click)="closeMobile()">North India Flood Relief</a>
-            </div>
+
             <div class="mega-col">
               <span class="mega-heading">More</span>
               <a routerLink="/home" (click)="closeMobile()">Online Store</a>
@@ -74,9 +69,9 @@
               <a routerLink="/our-work/agecare" (click)="closeMobile()">Elder Help Desk</a>
             </div>
             <div class="mega-col">
-              <span class="mega-heading">Livelihoods &amp; Emergencies</span>
+              <span class="mega-heading">Livelihoods</span>
               <a routerLink="/our-work/livelihoods" (click)="closeMobile()">Elder Self Help Groups</a>
-              <a routerLink="/our-work/livelihoods" (click)="closeMobile()">Disaster Management</a>
+
               <span class="mega-heading" style="margin-top:14px">Awareness &amp; Advocacy</span>
               <a routerLink="/our-work/advocacy" (click)="closeMobile()">Awareness &amp; Training Workshops</a>
               <a routerLink="/our-work/advocacy" (click)="closeMobile()">SAVE</a>
@@ -123,12 +118,12 @@
       <li class="mobile-section-label"><i class="fa-solid fa-bullhorn fa-fw menu-icon"></i> Take Action</li>
       <li class="indent"><a routerLink="/advantage-60" (click)="closeMobile()">AdvantAge 60</a></li>
       <li class="indent"><a routerLink="/walk-in-my-shoes" (click)="closeMobile()">Walk In My Shoes</a></li>
-      <li class="indent"><a routerLink="/disaster-relief" (click)="closeMobile()">Flood Relief 2025</a></li>
+
       <li class="indent"><a routerLink="/partners" (click)="closeMobile()">Partners</a></li>
       <li class="mobile-section-label"><i class="fa-solid fa-briefcase fa-fw menu-icon"></i> Our Work</li>
       <li class="indent"><a routerLink="/our-work/healthcare" (click)="closeMobile()">Healthcare</a></li>
       <li class="indent"><a routerLink="/our-work/agecare" (click)="closeMobile()">Agecare</a></li>
-      <li class="indent"><a routerLink="/our-work/livelihoods" (click)="closeMobile()">Livelihoods &amp; Emergencies</a></li>
+      <li class="indent"><a routerLink="/our-work/livelihoods" (click)="closeMobile()">Livelihoods</a></li>
       <li class="indent"><a routerLink="/our-work/advocacy" (click)="closeMobile()">Awareness &amp; Advocacy</a></li>
       <li><a routerLink="/impact-stories" (click)="closeMobile()"><i class="fa-solid fa-star fa-fw menu-icon"></i> Impact Stories</a></li>
       <li><a routerLink="/get-involved" (click)="closeMobile()"><i class="fa-solid fa-handshake-angle fa-fw menu-icon"></i> Get Involved</a></li>
