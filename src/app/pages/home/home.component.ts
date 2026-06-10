@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // Load static JSON data for tabs/programs (as these aren't in API yet)
     this.http.get<any>('/assets/data/home-data.json').subscribe(data => {
+      // console.log('Home Component - Static JSON data received:', data);
       this.workTabs = data.workTabs;
       this.programsMap = data.programsMap;
       this.stats = data.stats;
@@ -67,11 +68,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     // Fetch dynamic Hero Slides (Welcome Images)
     this.apiService.getWelcomeImages().subscribe({
       next: (response) => {
+        // console.log('Home Component - Welcome Images response received:', response);
         if (response.success && response.data && response.data.length) {
           this.heroSlides = response.data.map((item: any) => ({
             img: item.image.startsWith('http') ? item.image : this.apiService.storageUrl + item.image,
             caption: item.title
           }));
+          // console.log('Home Component - Formatted hero slides:', this.heroSlides);
         }
       },
       error: (err) => console.error('Failed to load welcome images', err)
@@ -80,6 +83,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     // Fetch dynamic Impact Stories
     this.apiService.getImpactStories().subscribe({
       next: (response) => {
+        // console.log('Home Component - Impact Stories response received:', response);
         if (response.success && response.data && response.data.length) {
           this.impactStories = response.data.map((item: any) => ({
             img: item.image.startsWith('http') ? item.image : this.apiService.storageUrl + item.image,
@@ -88,6 +92,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             title: item.title,
             desc: item.description
           }));
+          // console.log('Home Component - Formatted impact stories:', this.impactStories);
         }
       },
       error: (err) => console.error('Failed to load impact stories', err)

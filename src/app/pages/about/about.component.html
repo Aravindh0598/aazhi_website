@@ -11,17 +11,7 @@
   <div class="container">
     <div class="about-intro-grid">
       <div class="about-intro-content">
-        <p class="lead">
-          HelpAge India is a secular, not-for-profit organisation in India, registered under the Societies'
-          Registration Act of 1860. Set up in 1978, the organisation works for
-          <em>'the cause and care of disadvantaged older persons to improve their quality of life'</em>.
-          It runs healthcare, agecare, livelihood, disaster response and awareness initiatives throughout
-          the country &amp; advocates strongly for the elder cause. It became the first and only Indian
-          organization to be honoured with the <strong>'UN Population Award 2020'</strong> for its exemplary
-          work in the field of ageing and population issues, and earlier in 2014, has been the recipient of
-          <em>'Vayoshreshtha Samman'</em> by Government of India, as an institution working for senior citizens.
-        </p>
-        <p class="motto">HelpAge India's motto is <em>'Fighting isolation, poverty and neglect'</em>.</p>
+        <div class="lead dynamic-description" *ngIf="aboutContent" [innerHTML]="aboutContent.description"></div>
         <a href="#" class="btn-primary">Know more</a>
       </div>
       <div class="about-intro-stats">
@@ -57,141 +47,19 @@
       </p>
     </div>
 
-    <div class="members-grid">
-
-      <div class="member-card featured">
+    <!-- Dynamic Governing Body Members List -->
+    <div class="members-grid" *ngIf="governingBodies && governingBodies.length > 0">
+      <div class="member-card" [class.featured]="member.about" *ngFor="let member of governingBodies">
         <div class="member-photo-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2024/09/Mr.-Kiran-Karnik.png"
-               alt="Mr. Kiran Karnik" class="member-photo" />
+          <img [src]="member.image ? member.image : 'assets/images/placeholder.jpg'"
+               [alt]="member.name" class="member-photo" />
         </div>
         <div class="member-info">
-          <h3 class="member-name">Mr. Kiran Karnik</h3>
-          <span class="member-role">Chairperson</span>
-          <p class="member-bio">
-            Kiran Karnik is widely recognized for his work in the IT sector, as President NASSCOM from
-            2001 to 2008. Columnist, author, and former CEO of Discovery India. Conferred with the Padma Shri.
-          </p>
+          <h3 class="member-name">{{ member.name }}</h3>
+          <span class="member-role">{{ member.designation }}</span>
+          <p class="member-bio" *ngIf="member.about">{{ member.about }}</p>
         </div>
       </div>
-
-      <div class="member-card featured">
-        <div class="member-photo-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2024/09/Rumjhum-Chatterjee.png"
-               alt="Ms. Rumjhum Chatterjee" class="member-photo" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Ms. Rumjhum Chatterjee</h3>
-          <span class="member-role">Vice Chairperson</span>
-          <p class="member-bio">
-            Co-founder of The Infravision Foundation. Former Group Managing Director of Feedback Infra Group.
-            First woman Chairperson for CII Northern Regional Council (2016–17).
-          </p>
-        </div>
-      </div>
-
-      <div class="member-card featured">
-        <div class="member-photo-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2024/09/Mr.-Kaushik-Dutta.png"
-               alt="Mr. Kaushik Dutta" class="member-photo" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Mr. Kaushik Dutta</h3>
-          <span class="member-role">Hon. Treasurer</span>
-          <p class="member-bio">
-            Founding co-director of Thought Arbitrage Research Institute (TARI). Retired PricewaterhouseCoopers
-            partner with 22+ years experience. Chairman of Zomato Limited.
-          </p>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <div class="member-photo-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2024/09/J.-C.-Luther.jpg"
-               alt="Mr. J. C. Luther" class="member-photo" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Mr. J. C. Luther</h3>
-          <span class="member-role">Member</span>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <div class="member-photo-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2025/01/Arun-Seth-1.webp"
-               alt="Mr. Arun Seth" class="member-photo" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Mr. Arun Seth</h3>
-          <span class="member-role">Member</span>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <div class="member-photo-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2024/09/Radhika-Bharat-Ram.png"
-               alt="Ms. Radhika Bharat Ram" class="member-photo" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Ms. Radhika Bharat Ram</h3>
-          <span class="member-role">Member</span>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <div class="member-photo-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2024/09/Ms.-Gita-Nayyar.png"
-               alt="Ms. Gita Nayyar" class="member-photo" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Ms. Gita Nayyar</h3>
-          <span class="member-role">Member</span>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <div class="member-photo-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2024/09/Mr.-Sanjeev-Kapur.png"
-               alt="Mr. Sanjeev Kapur" class="member-photo" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Mr. Sanjeev Kapur</h3>
-          <span class="member-role">Member</span>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <div class="member-photo-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2025/04/Amarjit-Sinha-1.png"
-               alt="Mr. Amarjeet Sinha" class="member-photo" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Mr. Amarjeet Sinha</h3>
-          <span class="member-role">Member</span>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <div class="member-photo-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2025/04/Tarun-Rai.png"
-               alt="Mr. Tarun Rai" class="member-photo" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Mr. Tarun Rai</h3>
-          <span class="member-role">Member</span>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <div class="member-photo-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2024/11/Mr.-Rohit-Prasad.webp"
-               alt="Mr. Rohit Prasad" class="member-photo" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Mr. Rohit Prasad</h3>
-          <span class="member-role">Chief Executive Officer</span>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -384,33 +252,17 @@
       <h2 class="section-title">Documents</h2>
       <p class="section-desc">Explore our document section for in-depth insights and valuable resources.</p>
     </div>
-    <div class="docs-grid">
-      <div class="docs-category">
-        <h3 class="docs-category-title">Publications</h3>
+    <div class="docs-grid" style="display: block; max-width: 600px; margin: 0 auto;">
+      <div class="docs-category" *ngIf="aboutDocuments && aboutDocuments.length > 0">
+        <h3 class="docs-category-title" style="text-align: center;">Important Documents</h3>
         <ul class="docs-list">
-          <li><a href="#" class="doc-link">Annual Reports</a></li>
-          <li><a href="#" class="doc-link">Newsletters</a></li>
-          <li><a href="#" class="doc-link">Information Brochure</a></li>
+          <li *ngFor="let doc of aboutDocuments">
+            <a [href]="doc.file.startsWith('http') ? doc.file : apiService.storageUrl + doc.file" target="_blank" class="doc-link">
+              <i class="fa-solid fa-file-pdf"></i> {{ doc.name }}
+            </a>
+          </li>
         </ul>
       </div>
-      <div class="docs-category">
-        <h3 class="docs-category-title">Financials</h3>
-        <ul class="docs-list">
-          <li><a href="#" class="doc-link">Audited Accounts</a></li>
-          <li><a href="#" class="doc-link">FCRA</a></li>
-        </ul>
-      </div>
-      <div class="docs-category">
-        <h3 class="docs-category-title">Research</h3>
-        <ul class="docs-list">
-          <li><a href="#" class="doc-link">R&amp;D Journal</a></li>
-          <li><a href="#" class="doc-link">Research Contributions</a></li>
-          <li><a href="#" class="doc-link">Research Reports</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="section-cta">
-      <a href="#" class="btn-outline">View All Documents</a>
     </div>
   </div>
 </section>

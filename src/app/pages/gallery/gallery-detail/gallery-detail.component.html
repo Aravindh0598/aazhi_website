@@ -10,7 +10,7 @@
     <div class="container">
         <!-- Main Image -->
         <div class="main-image-container" *ngIf="gallery.images && gallery.images.length > 0">
-            <img [src]="apiService.storageUrl + gallery.images[0].image" [alt]="gallery.event_name" class="main-img">
+            <img [src]="getImageUrl(gallery.images[0].image)" [alt]="gallery.event_name" class="main-img">
         </div>
     </div>
 
@@ -22,8 +22,8 @@
 
         <h2 class="gallery-subtitle">Event Photos</h2>
         <div class="related-images-grid">
-            <div class="image-card" *ngFor="let img of gallery.images" (click)="openModal(apiService.storageUrl + img.image)">
-                <img [src]="apiService.storageUrl + img.image" [alt]="gallery.event_name" loading="lazy">
+            <div class="image-card" *ngFor="let img of gallery.images" (click)="openModal(getImageUrl(img.image))">
+                <img [src]="getImageUrl(img.image)" [alt]="gallery.event_name" loading="lazy">
                 <div class="image-overlay">
                     <i class="fa-solid fa-expand"></i>
                 </div>

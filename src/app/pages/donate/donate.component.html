@@ -75,8 +75,8 @@
                 </div>
 
                 <div class="qr-container">
-                    <img [src]="homeSettings?.upi_qr_code ? apiService.storageUrl + homeSettings.upi_qr_code : 'assets/images/QR.png'" 
-                         alt="UPI QR Code" class="qr-image">
+                    <img [src]="homeSettings?.upi_qr_code ? (homeSettings.upi_qr_code.startsWith('http') ? homeSettings.upi_qr_code : apiService.storageUrl + homeSettings.upi_qr_code) : 'assets/images/QR.png'" 
+                          alt="UPI QR Code" class="qr-image">
                     <p class="qr-help">Open any UPI app (GPay, PhonePe, Paytm) and scan to pay</p>
                 </div>
 

@@ -3,7 +3,7 @@
 
     <!-- Logo -->
     <a routerLink="/" class="logo">
-      <img [src]="homeSettings?.main_logo ? apiService.storageUrl + homeSettings.main_logo : 'assets/aazhi_logo_nobg.png'" 
+      <img [src]="homeSettings?.main_logo ? (homeSettings.main_logo.startsWith('http') ? homeSettings.main_logo : apiService.storageUrl + homeSettings.main_logo) : 'assets/aazhi_logo_nobg.png'" 
            [alt]="(homeSettings?.website_name || 'Aazhi Foundation') + ' Logo'" 
            class="brand-logo" />
       <span class="logo-text">{{ homeSettings?.website_name || 'Aazhi Foundation' }}</span>
@@ -13,37 +13,43 @@
     <nav class="desktop-nav" role="navigation" aria-label="Main Navigation">
       <ul>
         <li>
-          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">{{ t('nav.home') }}</a>
         </li>
 
         <li>
-          <a routerLink="/about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">About Us</a>
+          <a routerLink="/about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">{{ t('nav.about') }}</a>
         </li>
 
         <li>
-          <a routerLink="/gallery" routerLinkActive="active">Gallery</a>
+          <a routerLink="/gallery" routerLinkActive="active">{{ t('nav.gallery') }}</a>
         </li>
 
         <li>
-          <a routerLink="/impact-stories" routerLinkActive="active">Impact Stories</a>
+          <a routerLink="/impact-stories" routerLinkActive="active">{{ t('nav.impact') }}</a>
         </li>
         <li>
-          <a routerLink="/get-involved" routerLinkActive="active">Get Involved</a>
+          <a routerLink="/get-involved" routerLinkActive="active">{{ t('nav.involved') }}</a>
         </li>
         <li>
-          <a routerLink="/blog" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Blog</a>
+          <a routerLink="/blog" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">{{ t('nav.blog') }}</a>
         </li>
         <li>
-          <a routerLink="/contact" routerLinkActive="active">Contact</a>
+          <a routerLink="/contact" routerLinkActive="active">{{ t('nav.contact') }}</a>
         </li>
       </ul>
     </nav>
 
     <!-- CTA Donate -->
     <div class="header-cta">
+      <!-- Global Language Switcher -->
+      <div class="lang-switcher">
+        <button class="lang-btn" [class.active]="currentLang === 'en'" (click)="setLanguage('en')" aria-label="Switch to English">EN</button>
+        <button class="lang-btn" [class.active]="currentLang === 'ta'" (click)="setLanguage('ta')" aria-label="Switch to Tamil">தமிழ்</button>
+      </div>
+
       <a routerLink="/donate" class="btn-donate">
         <img src="https://www.helpageindia.org/wp-content/uploads/2024/09/heart-donate.png" alt="" />
-        Donate
+        {{ t('nav.donate') }}
       </a>
       <button class="mobile-toggle" (click)="toggleMobile()" aria-label="Toggle menu">
         <span class="burger" [class.open]="mobileMenuOpen">
@@ -56,14 +62,14 @@
   <!-- Mobile Menu -->
   <nav class="mobile-nav" [class.open]="mobileMenuOpen" aria-label="Mobile Navigation">
     <ul>
-      <li><a routerLink="/home" (click)="closeMobile()"><i class="fa-solid fa-house fa-fw menu-icon"></i> Home</a></li>
-      <li><a routerLink="/about-us" (click)="closeMobile()"><i class="fa-solid fa-circle-info fa-fw menu-icon"></i> About Us</a></li>
-      <li><a routerLink="/gallery" (click)="closeMobile()"><i class="fa-solid fa-images fa-fw menu-icon"></i> Gallery</a></li>
-      <li><a routerLink="/impact-stories" (click)="closeMobile()"><i class="fa-solid fa-star fa-fw menu-icon"></i> Impact Stories</a></li>
-      <li><a routerLink="/get-involved" (click)="closeMobile()"><i class="fa-solid fa-handshake-angle fa-fw menu-icon"></i> Get Involved</a></li>
-      <li><a routerLink="/blog" (click)="closeMobile()"><i class="fa-solid fa-pen-to-square fa-fw menu-icon"></i> Blog</a></li>
-      <li><a routerLink="/contact" (click)="closeMobile()"><i class="fa-solid fa-phone fa-fw menu-icon"></i> Contact</a></li>
-      <li class="mobile-donate-li"><a routerLink="/donate" class="mobile-donate-btn" (click)="closeMobile()"><i class="fa-solid fa-heart fa-fw menu-icon"></i> Donate Now</a></li>
+      <li><a routerLink="/home" (click)="closeMobile()"><i class="fa-solid fa-house fa-fw menu-icon"></i> {{ t('nav.home') }}</a></li>
+      <li><a routerLink="/about-us" (click)="closeMobile()"><i class="fa-solid fa-circle-info fa-fw menu-icon"></i> {{ t('nav.about') }}</a></li>
+      <li><a routerLink="/gallery" (click)="closeMobile()"><i class="fa-solid fa-images fa-fw menu-icon"></i> {{ t('nav.gallery') }}</a></li>
+      <li><a routerLink="/impact-stories" (click)="closeMobile()"><i class="fa-solid fa-star fa-fw menu-icon"></i> {{ t('nav.impact') }}</a></li>
+      <li><a routerLink="/get-involved" (click)="closeMobile()"><i class="fa-solid fa-handshake-angle fa-fw menu-icon"></i> {{ t('nav.involved') }}</a></li>
+      <li><a routerLink="/blog" (click)="closeMobile()"><i class="fa-solid fa-pen-to-square fa-fw menu-icon"></i> {{ t('nav.blog') }}</a></li>
+      <li><a routerLink="/contact" (click)="closeMobile()"><i class="fa-solid fa-phone fa-fw menu-icon"></i> {{ t('nav.contact') }}</a></li>
+      <li class="mobile-donate-li"><a routerLink="/donate" class="mobile-donate-btn" (click)="closeMobile()"><i class="fa-solid fa-heart fa-fw menu-icon"></i> {{ t('nav.donateNow') }}</a></li>
     </ul>
   </nav>
 </header>

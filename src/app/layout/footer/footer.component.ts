@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-footer',
@@ -18,16 +19,21 @@ export class FooterComponent implements OnInit {
   contacts: any[] = [];
 
   public apiService = inject(ApiService);
+  public languageService = inject(LanguageService);
+
+  t(key: string): string {
+    return this.languageService.translate(key);
+  }
 
   ngOnInit(): void {
     this.apiService.homeSettings$.subscribe(settings => {
-      console.log('Footer: Home Settings received:', settings);
+      // console.log('Footer: Home Settings received:', settings);
       this.homeSettings = settings;
     });
 
     this.apiService.getContacts().subscribe({
       next: (response) => {
-        console.log('Footer: Contacts response:', response);
+        // console.log('Footer: Contacts response:', response);
         if (response.success) {
           this.contacts = response.data;
         }
@@ -66,23 +72,27 @@ export class FooterComponent implements OnInit {
     
     // Format Date like "10/April/2026"
     const day = now.getDate().toString().padStart(2, '0');
-    const month = now.toLocaleDateString('en-US', { month: 'long' });
+    const month = now.toLocaleDateString(this.languageService.getCurrentLanguage() === 'ta' ? 'ta-IN' : 'en-US', { month: 'long' });
     const year = now.getFullYear();
     const dateStr = `${day}/${month}/${year}`;
-    const fullDayStr = `${todayName}, ${dateStr}`;
+    
+    // Get localized day name
+    const dayKey = `day.${todayName}`;
+    const localizedTodayName = this.t(dayKey);
+    const fullDayStr = `${localizedTodayName}, ${dateStr}`;
     
     // Find timing for today
     const timing = this.primaryContact.timings.find((t: any) => t.day === todayName);
     
     if (todayName === 'Sunday') {
-      return `${fullDayStr}: Holiday`;
+      return `${fullDayStr}: ${this.t('time.Holiday')}`;
     }
     
     if (timing && timing.from && timing.to) {
       return `${fullDayStr}: ${this.formatTime(timing.from)} - ${this.formatTime(timing.to)}`;
     }
     
-    return `${fullDayStr}: Closed`;
+    return `${fullDayStr}: ${this.t('time.Closed')}`;
   }
 
   private formatTime(time: string): string {

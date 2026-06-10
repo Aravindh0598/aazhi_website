@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,20 @@ export class HeaderComponent implements OnInit {
   homeSettings: any = null;
 
   public apiService = inject(ApiService);
+  public languageService = inject(LanguageService);
   private router = inject(Router);
+
+  t(key: string): string {
+    return this.languageService.translate(key);
+  }
+
+  get currentLang(): string {
+    return this.languageService.getCurrentLanguage();
+  }
+
+  setLanguage(lang: 'en' | 'ta'): void {
+    this.languageService.setLanguage(lang);
+  }
 
   ngOnInit(): void {
     this.apiService.homeSettings$.subscribe(settings => {

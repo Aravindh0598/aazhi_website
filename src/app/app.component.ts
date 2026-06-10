@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
       next: (response) => {
         if (response.success) {
           this.homeSettings = response.data;
-          console.log('Home Settings loaded:', this.homeSettings);
+          // console.log('Home Settings loaded:', this.homeSettings);
         }
       },
       error: (err) => console.error('Failed to load home settings', err)
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
       next: (response) => {
         if (response.success) {
           this.welcomeImages = response.data;
-          console.log('Welcome Images loaded:', this.welcomeImages);
+          // console.log('Welcome Images loaded:', this.welcomeImages);
         }
       },
       error: (err) => console.error('Failed to load welcome images', err)

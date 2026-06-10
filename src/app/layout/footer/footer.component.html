@@ -1,10 +1,10 @@
 <!-- Newsletter -->
 <section class="newsletter-band">
   <div class="nl-inner">
-    <p>Stay up-to-date with all our latest <span class="highlight">news</span></p>
+    <p [innerHTML]="t('footer.stayUpdated')"></p>
     <div class="nl-form">
-      <input type="email" [(ngModel)]="email" placeholder="Enter your email address" aria-label="Email" />
-      <button (click)="onSubscribe()">Subscribe Now</button>
+      <input type="email" [(ngModel)]="email" [placeholder]="t('footer.emailPlaceholder')" aria-label="Email" />
+      <button (click)="onSubscribe()">{{ t('footer.subscribe') }}</button>
     </div>
   </div>
 </section>
@@ -49,90 +49,90 @@
 
       <!-- About Us -->
       <div class="footer-col">
-        <h4>About Us</h4>
+        <h4>{{ t('footer.aboutUs') }}</h4>
         <ul>
-          <li><a routerLink="/about-us">About AAZHI</a></li>
-          <li><a routerLink="/about-us">Awards &amp; Recognition</a></li>
-          <li><a routerLink="/about-us">Financials</a></li>
-          <li><a routerLink="/about-us">Publications</a></li>
-          <li><a routerLink="/partners">Partners</a></li>
-          <li><a routerLink="/blog">News</a></li>
+          <li><a routerLink="/about-us">{{ t('footer.aboutAazhi') }}</a></li>
+          <li><a routerLink="/about-us">{{ t('footer.awards') }}</a></li>
+          <li><a routerLink="/about-us">{{ t('footer.financials') }}</a></li>
+          <li><a routerLink="/about-us">{{ t('footer.publications') }}</a></li>
+          <li><a routerLink="/partners">{{ t('footer.partners') }}</a></li>
+          <li><a routerLink="/blog">{{ t('footer.news') }}</a></li>
         </ul>
       </div>
 
       <!-- Support Us -->
       <div class="footer-col">
-        <h4>Support Us</h4>
+        <h4>{{ t('footer.supportUs') }}</h4>
         <ul>
           <li>
             <a routerLink="/persons-with-disabilities">
-              Persons with Disabilities
+              {{ t('footer.pwd') }}
             </a>
           </li>
           <li>
             <a routerLink="/donate">
-              Donate
+              {{ t('nav.donate') }}
             </a>
           </li>
           <li>
             <a routerLink="/volunteer">
-              Volunteer
+              {{ t('footer.volunteer') }}
             </a>
           </li>
           <li>
             <a routerLink="/corporate-csr">
-              Corporate CSR
+              {{ t('footer.csr') }}
             </a>
           </li>
           <li>
             <a routerLink="/legacy-giving">
-              Legacy Giving
+              {{ t('footer.legacy') }}
             </a>
           </li>
         </ul>
       </div>
 
 <div class="footer-col">
-  <h4>Important Links</h4>
+  <h4>{{ t('footer.importantLinks') }}</h4>
   <ul>
     <li>
       <a routerLink="/persons-with-disabilities">
-        <i class="fa-solid fa-wheelchair"></i> Persons with Disabilities
+        <i class="fa-solid fa-wheelchair"></i> {{ t('footer.pwd') }}
       </a>
     </li>
     <li>
       <a routerLink="/careers">
-        <i class="fa-solid fa-briefcase"></i> Job Openings
+        <i class="fa-solid fa-briefcase"></i> {{ t('footer.careers') }}
       </a>
     </li>
     <li>
       <a routerLink="/privacy-policy">
-        <i class="fa-solid fa-shield-halved"></i> Privacy Policy
+        <i class="fa-solid fa-shield-halved"></i> {{ t('footer.privacy') }}
       </a>
     </li>
     <li>
       <a routerLink="/terms">
-        <i class="fa-solid fa-file-contract"></i> Terms & Conditions
+        <i class="fa-solid fa-file-contract"></i> {{ t('footer.terms') }}
       </a>
     </li>
     <li>
       <a routerLink="/refund-policy">
-        <i class="fa-solid fa-rotate-left"></i> Donation Refund Policy
+        <i class="fa-solid fa-rotate-left"></i> {{ t('footer.refund') }}
       </a>
     </li>
     <li>
       <a routerLink="/contact">
-        <i class="fa-solid fa-envelope"></i> Contact Us
+        <i class="fa-solid fa-envelope"></i> {{ t('footer.contactUs') }}
       </a>
     </li>
     <li>
       <a routerLink="/brochure">
-        <i class="fa-solid fa-book-open"></i> Brochure
+        <i class="fa-solid fa-book-open"></i> {{ t('footer.brochure') }}
       </a>
     </li>
     <li>
       <a routerLink="/annual-report">
-        <i class="fa-solid fa-chart-column"></i> Annual Report
+        <i class="fa-solid fa-chart-column"></i> {{ t('footer.annualReport') }}
       </a>
     </li>
   </ul>
@@ -140,12 +140,12 @@
 
       <!-- UPI -->
       <div class="footer-col footer-upi">
-        <h4>Pay using any UPI Apps</h4>
-        <img [src]="homeSettings?.upi_qr_code ? apiService.storageUrl + homeSettings.upi_qr_code : 'assets/images/QR.png'"
+        <h4>{{ t('footer.payUPI') }}</h4>
+        <img [src]="homeSettings?.upi_qr_code ? (homeSettings.upi_qr_code.startsWith('http') ? homeSettings.upi_qr_code : apiService.storageUrl + homeSettings.upi_qr_code) : 'assets/images/QR.png'"
              alt="UPI QR Code" class="upi-qr" />
         <p class="upi-id"><strong>UPI / VPA ID:</strong> aazhifoundation&#64;sbi</p>
-        <p><strong>Org. Name:</strong> AAZHI FOUNDATION</p>
-        <a routerLink="/donate" class="btn-footer-donate">Donate Now</a>
+        <p><strong>{{ t('footer.orgName') }}:</strong> AAZHI FOUNDATION</p>
+        <a routerLink="/donate" class="btn-footer-donate">{{ t('footer.donateNow') }}</a>
       </div>
 
     </div>
@@ -153,8 +153,8 @@
 
   <div class="footer-bottom">
     <div class="footer-container bottom-container">
-      <p>© {{ currentYear }} AAZHI Foundation. All Rights Reserved.</p>
-      <p class="developed-by">Developed by <a href="#" target="_blank" rel="noopener noreferrer">Sova Technologies</a></p>
+      <p>© {{ currentYear }} AAZHI Foundation. {{ t('footer.rights') }}</p>
+      <p class="developed-by">{{ t('footer.developedBy') }} <a href="#" target="_blank" rel="noopener noreferrer">Sova Technologies</a></p>
     </div>
   </div>
 </footer>

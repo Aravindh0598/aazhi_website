@@ -40,6 +40,11 @@ export class GalleryDetailComponent implements OnInit {
     });
   }
 
+  getImageUrl(imagePath: string): string {
+    if (!imagePath) return '';
+    return imagePath.startsWith('http') ? imagePath : this.apiService.storageUrl + imagePath;
+  }
+
   openModal(imageUrl: string): void {
     this.selectedImageUrl = imageUrl;
     document.body.style.overflow = 'hidden'; // Lock scroll

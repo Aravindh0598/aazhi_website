@@ -33,7 +33,8 @@ export class GalleryComponent implements OnInit {
 
   getThumbnail(gallery: any): string {
     if (gallery.images && gallery.images.length > 0) {
-      return this.apiService.storageUrl + gallery.images[0].image;
+      const img = gallery.images[0].image;
+      return img.startsWith('http') ? img : this.apiService.storageUrl + img;
     }
     return 'assets/images/placeholder.jpg';
   }
