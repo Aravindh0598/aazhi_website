@@ -341,3 +341,57 @@
   .pagination { gap: 4px; }
   .page-btn--nav { padding: 0 10px; }
 }
+
+/* ── Custom Extensions for Dynamic Blogs ────────────────────────── */
+.post-image-container {
+  width: 100%;
+  max-height: 380px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #e8e0d8;
+}
+.post-featured-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  display: block;
+}
+.post-item:hover .post-featured-image {
+  transform: scale(1.02);
+}
+.post-content-full {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: .95rem;
+  color: #2c2c2c;
+  line-height: 1.8;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.post-content-full p {
+  margin-bottom: 15px;
+}
+.post-content-full p:last-child {
+  margin-bottom: 0;
+}
+.post-read-more-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: Arial, sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  color: #f47920;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  transition: gap .18s, color .18s;
+  margin-top: 10px;
+}
+.post-read-more-btn:hover { gap: 10px; color: #d9660d; }
+.post-read-more-btn svg { width: 13px; height: 13px; transition: transform .18s; }
+.post-read-more-btn:hover svg { transform: translateX(2px); }

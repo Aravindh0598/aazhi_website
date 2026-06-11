@@ -27,28 +27,38 @@
         <div class="posts-list">
 
           <article class="post-item" *ngFor="let post of getPaginatedPosts()">
+            <div class="post-image-container" *ngIf="post.image">
+              <img [src]="post.image" [alt]="post.title" class="post-featured-image" />
+            </div>
             <div class="post-meta">
               <div class="post-author">
                 <!-- <img src="https://www.helpageindia.org/wp-content/uploads/2024/07/hi-fav-150x150.png"
                      alt="HelpAge India" class="author-avatar" /> -->
-                <span class="author-name">HelpAge India</span>
+                <span class="author-name">Aazhi charitable foundation</span>
               </div>
               <time class="post-date">{{ post.date }}</time>
             </div>
             <div class="post-body">
               <span class="post-category">{{ post.category }}</span>
               <h3 class="post-title">
-                <a href="#" class="post-title-link">{{ post.title }}</a>
+                <a href="#" class="post-title-link" (click)="togglePost(post.id, $event)">{{ post.title }}</a>
               </h3>
-              <p class="post-excerpt">{{ post.excerpt }}</p>
-              <a href="#" class="post-read-more">
-                Read More
+              
+              <!-- Truncated excerpt -->
+              <p class="post-excerpt" *ngIf="!isExpanded(post.id)">{{ post.excerpt }}</p>
+              
+              <!-- Full blog body with HTML styling -->
+              <div class="post-content-full" *ngIf="isExpanded(post.id)" [innerHTML]="post.description"></div>
+              
+              <button class="post-read-more-btn" (click)="togglePost(post.id, $event)">
+                {{ isExpanded(post.id) ? 'Read Less' : 'Read More' }}
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                     stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                     [style.transform]="isExpanded(post.id) ? 'rotate(-90deg)' : 'none'">
                   <line x1="5" y1="12" x2="19" y2="12"/>
                   <polyline points="12 5 19 12 12 19"/>
                 </svg>
-              </a>
+              </button>
             </div>
           </article>
 

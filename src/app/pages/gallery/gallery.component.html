@@ -1,27 +1,84 @@
+<!-- ── Hero ──────────────────────────────────────────────────────── -->
 <section class="gallery-hero">
-  <div class="container">
-    <h1>Our Gallery</h1>
-    <p>A visual journey through our events and impact.</p>
+  <div class="hero-inner">
+    <div class="hero-badge">📸 Our Visual Stories</div>
+    <h1 class="hero-title">Gallery</h1>
+    <p class="hero-sub">Capturing moments of impact, compassion, and community across our journey.</p>
   </div>
 </section>
 
-<section class="gallery-grid-section">
+<!-- ── Gallery Grid ──────────────────────────────────────────────── -->
+<section class="gallery-section">
   <div class="container">
-    <div *ngIf="loading" class="loader">Loading Gallery...</div>
-    
-    <div *ngIf="!loading && galleries.length === 0" class="empty-state">
-      <p>No gallery events found.</p>
+
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="section-title">Event Albums</h2>
+      <span class="section-count" *ngIf="!loading">{{ galleries.length }} album{{ galleries.length !== 1 ? 's' : '' }}</span>
     </div>
 
+    <!-- Skeleton Loaders -->
+    <div class="gallery-grid" *ngIf="loading">
+      <div class="gallery-card skeleton" *ngFor="let s of [1,2,3,4,5,6]">
+        <div class="skel-img"></div>
+        <div class="skel-lines">
+          <div class="skel-line skel-line--lg"></div>
+          <div class="skel-line skel-line--sm"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="!loading && galleries.length === 0">
+      <div class="empty-icon">🖼️</div>
+      <h3>No albums yet</h3>
+      <p>Check back soon — photos are on the way!</p>
+    </div>
+
+    <!-- Gallery Cards -->
     <div class="gallery-grid" *ngIf="!loading && galleries.length > 0">
-      <div class="gallery-card" *ngFor="let g of galleries" [routerLink]="['/gallery', g.id]">
-        <div class="card-img">
-          <img [src]="getThumbnail(g)" [alt]="g.event_name" loading="lazy">
+      <div
+        class="gallery-card"
+        *ngFor="let g of galleries; let i = index"
+        [routerLink]="['/gallery', g.id]"
+        [style.animation-delay]="(i * 60) + 'ms'"
+      >
+        <!-- Thumbnail -->
+        <div class="card-thumb">
+          <img [src]="getThumbnail(g)" [alt]="g.event_name" loading="lazy" />
           <div class="card-overlay">
-            <h3 class="event-title">{{ g.event_name }}</h3>
+            <span class="overlay-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </span>
+          </div>
+          <!-- Photo count badge -->
+          <span class="photo-badge" *ngIf="g.images && g.images.length > 0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            {{ g.images.length }}
+          </span>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer">
+          <h3 class="card-title">{{ g.event_name }}</h3>
+          <div class="card-meta">
+            <span class="card-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              {{ g.created_at | date:'MMM yyyy' }}
+            </span>
+            <span class="card-cta">View Album →</span>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>

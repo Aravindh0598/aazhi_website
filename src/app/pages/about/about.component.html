@@ -64,186 +64,68 @@
   </div>
 </section>
 
-<!-- About HelpAge India -->
-<section class="section about-helpage">
+
+
+<!-- Our Members -->
+<section class="section section-alt our-members">
   <div class="container">
-    <div class="about-helpage-grid">
-      <div class="about-helpage-text">
-        <h2 class="section-title">About HelpAge India</h2>
-        <p>
-          HelpAge India envisions a society where the elderly have the right to an active, healthy and dignified
-          life. It works through <strong>26 State Offices</strong> across India, running numerous programmes
-          on-ground, addressing elder needs and advocating for their rights.
-        </p>
-        <p>
-          HelpAge India reaches approximately <strong>2 million disadvantaged elderly</strong> directly and
-          indirectly every year. It collaborates with multiple stakeholders, including the government,
-          corporates, educational institutions and social sector organizations in advancing its mission.
-          In 2020, it became the first and only Indian organisation to be honoured with the
-          <strong>'UN Population Award'</strong> for its exemplary work in the field of ageing.
-        </p>
-        <p>
-          It played a major contributing role towards the formation of the National Policy on Older Persons
-          in 1999 as well as the promulgation of The Maintenance and Welfare of Parents and Senior Citizens Act, 2007.
-        </p>
-      </div>
-      <div class="about-helpage-pillars">
-        <h3 class="pillars-title">Programme focus areas</h3>
-        <ul class="pillars-list">
-          <li class="pillar-item">
-            <span class="pillar-icon">&#9829;</span>
-            <span>Advocacy &amp; Awareness</span>
-          </li>
-          <li class="pillar-item">
-            <span class="pillar-icon">&#9829;</span>
-            <span>Agecare</span>
-          </li>
-          <li class="pillar-item">
-            <span class="pillar-icon">&#9829;</span>
-            <span>Healthcare</span>
-          </li>
-          <li class="pillar-item">
-            <span class="pillar-icon">&#9829;</span>
-            <span>Livelihoods &amp; Disaster Management</span>
-          </li>
-          <li class="pillar-item">
-            <span class="pillar-icon">&#9829;</span>
-            <span>Research &amp; Policy</span>
-          </li>
-        </ul>
+    <div class="section-header">
+      <h2 class="section-title">Our Members</h2>
+      <p class="section-desc">Meet the dedicated people who make our mission possible.</p>
+    </div>
+
+    <!-- Loading skeleton -->
+    <div class="members-skeleton" *ngIf="membersLoading">
+      <div class="member-skel" *ngFor="let s of [1,2,3,4,5,6]">
+        <div class="skel-avatar"></div>
+        <div class="skel-line skel-line--name"></div>
       </div>
     </div>
+
+    <!-- Empty state -->
+    <div class="members-empty" *ngIf="!membersLoading && members.length === 0">
+      <p>No members found.</p>
+    </div>
+
+    <!-- Continuous scrolling marquee -->
+    <div class="marquee-wrapper" *ngIf="!membersLoading && members.length > 0">
+      <div class="marquee-track">
+        <!-- Original list -->
+        <div class="marquee-content">
+          <div class="our-member-card" *ngFor="let member of members">
+            <div class="our-member-photo-wrap">
+              <img
+                [src]="member.profile_image ? member.profile_image : getAvatarUrl(member.name)"
+                [alt]="member.name"
+                class="our-member-photo"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="our-member-name">{{ member.name }}</h3>
+            <span class="our-member-role" *ngIf="member.designation">{{ member.designation }}</span>
+          </div>
+        </div>
+        <!-- Duplicated list for seamless infinite scroll -->
+        <div class="marquee-content" aria-hidden="true">
+          <div class="our-member-card" *ngFor="let member of members">
+            <div class="our-member-photo-wrap">
+              <img
+                [src]="member.profile_image ? member.profile_image : getAvatarUrl(member.name)"
+                [alt]="member.name"
+                class="our-member-photo"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="our-member-name">{{ member.name }}</h3>
+            <span class="our-member-role" *ngIf="member.designation">{{ member.designation }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- Executive Committee -->
-<section class="section section-alt exec-committee">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Executive Committee</h2>
-      <p class="section-desc">HelpAge India's senior management team operates from its Head Office in New Delhi</p>
-    </div>
-    <div class="exec-grid">
-      <div class="exec-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2024/11/Mr.-Rohit-Prasad.webp"
-             alt="Mr. Rohit Prasad" class="exec-photo" />
-        <h3 class="exec-name">Mr. Rohit Prasad</h3>
-        <span class="exec-role">Chief Executive Officer</span>
-      </div>
-      <div class="exec-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2024/11/Prateep-Chakraborty.webp"
-             alt="Mr. Prateep Chakraborty" class="exec-photo" />
-        <h3 class="exec-name">Mr. Prateep Chakraborty</h3>
-        <span class="exec-role">Chief Operating Officer</span>
-      </div>
-      <div class="exec-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2024/11/Ritu-Rana.webp"
-             alt="Dr. Ritu Rana" class="exec-photo" />
-        <h3 class="exec-name">Dr. Ritu Rana</h3>
-        <span class="exec-role">Mission Head, Healthcare</span>
-      </div>
-      <div class="exec-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2024/11/Anupama-Datta.webp"
-             alt="Ms. Anupama Datta" class="exec-photo" />
-        <h3 class="exec-name">Ms. Anupama Datta</h3>
-        <span class="exec-role">Head, Policy Research &amp; Advocacy</span>
-      </div>
-      <div class="exec-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2024/11/Sonali-Sharma.webp"
-             alt="Ms. Sonali Sharma" class="exec-photo" />
-        <h3 class="exec-name">Ms. Sonali Sharma</h3>
-        <span class="exec-role">Head, Communications</span>
-      </div>
-      <div class="exec-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2024/11/Gulshan-Sharma.webp"
-             alt="Mr. Gulshan Sharma" class="exec-photo" />
-        <h3 class="exec-name">Mr. Gulshan Sharma</h3>
-        <span class="exec-role">Chief Financial Officer</span>
-      </div>
-    </div>
-    <div class="section-cta">
-      <a href="#" class="btn-primary">Know more</a>
-    </div>
-  </div>
-</section>
-
-<!-- State Leadership Team -->
-<section class="section state-team">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">State Leadership Team</h2>
-      <p class="section-desc">HelpAge India's leadership team in charge of its State offices across the country</p>
-    </div>
-    <div class="state-grid">
-      <div class="state-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2025/01/Alok-Kumar-Verma-150x150.webp"
-             alt="Mr. Alok Kumar Verma" class="state-photo" />
-        <h3 class="state-name">Mr. Alok Kumar Verma</h3>
-        <span class="state-region">Bihar and Jharkhand</span>
-      </div>
-      <div class="state-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2025/01/Anoop-Pant-150x150.webp"
-             alt="Mr. Anoop Pant" class="state-photo" />
-        <h3 class="state-name">Mr. Anoop Pant</h3>
-        <span class="state-region">Uttar Pradesh</span>
-      </div>
-      <div class="state-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2025/01/Bharati-Chakra-150x150.webp"
-             alt="Ms. Bharati Chakra" class="state-photo" />
-        <h3 class="state-name">Ms. Bharati Chakra</h3>
-        <span class="state-region">Odisha</span>
-      </div>
-      <div class="state-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2025/01/Biju-Mathew-2-150x150.webp"
-             alt="Mr. Biju Mathew" class="state-photo" />
-        <h3 class="state-name">Mr. Biju Mathew</h3>
-        <span class="state-region">Kerala</span>
-      </div>
-      <div class="state-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2025/01/Chaitanya-Upadhyay-150x150.webp"
-             alt="Mr. Chaitanya Upadhyay" class="state-photo" />
-        <h3 class="state-name">Mr. Chaitanya Upadhyay</h3>
-        <span class="state-region">Uttarakhand</span>
-      </div>
-      <div class="state-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2025/01/Edwin-Bbau-Solomon-150x150.webp"
-             alt="Mr. Edwin Babu Solomon" class="state-photo" />
-        <h3 class="state-name">Mr. Edwin Babu Solomon</h3>
-        <span class="state-region">Tamil Nadu</span>
-      </div>
-      <div class="state-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2025/01/M.-Prakashan-150x150.webp"
-             alt="Mr. M. Prakashan" class="state-photo" />
-        <h3 class="state-name">Mr. M. Prakashan</h3>
-        <span class="state-region">Karnataka</span>
-      </div>
-      <div class="state-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2025/01/Sanskriti-Khare-150x150.webp"
-             alt="Ms. Sanskriti Khare" class="state-photo" />
-        <h3 class="state-name">Ms. Sanskriti Khare</h3>
-        <span class="state-region">Madhya Pradesh</span>
-      </div>
-      <div class="state-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2025/01/Thokchom-Rojibala-Bala-150x150.webp"
-             alt="Ms. Thokchom Rojibala Devi" class="state-photo" />
-        <h3 class="state-name">Ms. Thokchom Rojibala Devi</h3>
-        <span class="state-region">Delhi-NCR</span>
-      </div>
-      <div class="state-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2025/02/Yetendra-Yadav-150x150.webp"
-             alt="Mr. Yetendra Yadav Vonteru" class="state-photo" />
-        <h3 class="state-name">Mr. Yetendra Yadav Vonteru</h3>
-        <span class="state-region">Andhra Pradesh &amp; Telangana</span>
-      </div>
-      <div class="state-card">
-        <img src="https://www.helpageindia.org/wp-content/uploads/2025/04/Priyanjali-2-150x150.jpeg"
-             alt="Ms. Priyanjali Chakraborty" class="state-photo" />
-        <h3 class="state-name">Ms. Priyanjali Chakraborty</h3>
-        <span class="state-region">West Bengal &amp; North East</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- Documents Section -->
 <section class="section section-alt documents">
@@ -267,43 +149,7 @@
   </div>
 </section>
 
-<!-- Awards & Recognitions -->
-<section class="section awards">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Awards &amp; Recognitions</h2>
-      <p class="section-desc">
-        Through the years, HelpAge India's work has been recognised by several organisations and institutions.
-      </p>
-    </div>
-    <div class="awards-grid">
-      <div class="award-card">
-        <div class="award-img-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2024/09/Ms.-Argentina-Matavel-Piccin-UNFPA-Representative-India-L-presenting-the-certificate-to-Mr.-Rohit-Prasad-CEO-HelpAge-India.jpg"
-               alt="UN Population Award" class="award-img" />
-        </div>
-        <p class="award-title">HelpAge India honoured with United Nations Population Award 2020</p>
-      </div>
-      <div class="award-card">
-        <div class="award-img-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2024/11/vayoshreshta-award.webp"
-               alt="Vayoshreshtha Samman" class="award-img" />
-        </div>
-        <p class="award-title">HelpAge India was awarded Vayoshreshtha Samman (National Award for Senior Citizens)</p>
-      </div>
-      <div class="award-card">
-        <div class="award-img-wrap">
-          <img src="https://www.helpageindia.org/wp-content/uploads/2024/09/HelpAge-India_CRISIL-Grading-Certificate-2022.jpg"
-               alt="CRISIL Grading" class="award-img" />
-        </div>
-        <p class="award-title">CRISIL VO1A Grading for excellence in operations &amp; financial transparency (2022)</p>
-      </div>
-    </div>
-    <div class="section-cta">
-      <a href="#" class="btn-primary">View All Awards</a>
-    </div>
-  </div>
-</section>
+
 
 <!-- Recent News -->
 <section class="section section-alt recent-news">

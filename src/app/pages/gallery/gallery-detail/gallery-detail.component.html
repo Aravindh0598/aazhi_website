@@ -1,41 +1,129 @@
-<div *ngIf="loading" class="detail-loader">Loading details...</div>
-
-<div class="container back-nav">
-    <a routerLink="/gallery" class="btn-back">
-        <i class="fa-solid fa-arrow-left"></i> Back to Gallery
-    </a>
+<!-- ── Skeleton while loading ────────────────────────────────── -->
+<div class="detail-skeleton" *ngIf="loading">
+  <div class="skel-hero"></div>
+  <div class="container skel-body">
+    <div class="skel-title"></div>
+    <div class="skel-desc"></div>
+    <div class="skel-grid">
+      <div class="skel-thumb" *ngFor="let n of [1,2,3,4,5,6]"></div>
+    </div>
+  </div>
 </div>
 
+
+
+<!-- ── Main Content ──────────────────────────────────────────── -->
 <article class="gallery-article" *ngIf="!loading && gallery">
-    <div class="container">
-        <!-- Main Image -->
-        <div class="main-image-container" *ngIf="gallery.images && gallery.images.length > 0">
-            <img [src]="getImageUrl(gallery.images[0].image)" [alt]="gallery.event_name" class="main-img">
+
+  <!-- Hero Banner (first image) -->
+  <div class="detail-hero" *ngIf="gallery.images && gallery.images.length > 0"
+       (click)="openModal(getImageUrl(gallery.images[0].image), 0)">
+    <img [src]="getImageUrl(gallery.images[0].image)" [alt]="gallery.event_name" class="hero-img" />
+    <div class="hero-overlay">
+
+      <!-- Back button — top-right, visible on hero hover -->
+      <a routerLink="/gallery" class="hero-back-btn" (click)="$event.stopPropagation()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Back to Gallery
+      </a>
+
+      <div class="hero-text">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          {{ gallery.images.length }} Photo{{ gallery.images.length !== 1 ? 's' : '' }}
         </div>
+        <h1 class="hero-title">{{ gallery.event_name }}</h1>
+        <span class="hero-click-hint">Click to view full size</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container detail-body">
+    <!-- Title & Description -->
+    <div class="meta-block">
+      <h2 class="event-title">{{ gallery.event_name }}</h2>
+      <div class="event-date" *ngIf="gallery.created_at">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        {{ gallery.created_at | date:'MMMM d, yyyy' }}
+      </div>
+      <div class="event-desc" *ngIf="gallery.description" [innerHTML]="gallery.description"></div>
     </div>
 
-    <div class="container detail-content">
-        <h1 class="gallery-title">{{ gallery.event_name }}</h1>
-        <div class="gallery-desc" [innerHTML]="gallery.description"></div>
-
-        <hr class="section-divider">
-
-        <h2 class="gallery-subtitle">Event Photos</h2>
-        <div class="related-images-grid">
-            <div class="image-card" *ngFor="let img of gallery.images" (click)="openModal(getImageUrl(img.image))">
-                <img [src]="getImageUrl(img.image)" [alt]="gallery.event_name" loading="lazy">
-                <div class="image-overlay">
-                    <i class="fa-solid fa-expand"></i>
-                </div>
-            </div>
+    <!-- Photo Grid -->
+    <div class="photos-section">
+      <div class="photos-header">
+        <h3 class="photos-title">Event Photos</h3>
+        <span class="photos-count">{{ gallery.images?.length || 0 }} images</span>
+      </div>
+      <div class="photos-grid">
+        <div
+          class="photo-card"
+          *ngFor="let img of gallery.images; let i = index"
+          (click)="openModal(getImageUrl(img.image), i)"
+          [style.animation-delay]="(i * 50) + 'ms'"
+        >
+          <img [src]="getImageUrl(img.image)" [alt]="gallery.event_name + ' photo ' + (i + 1)" loading="lazy" />
+          <div class="photo-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </article>
 
-<!-- Full Screen Modal -->
-<div class="image-modal" *ngIf="selectedImageUrl" (click)="closeModal()">
-    <button class="close-btn" (click)="closeModal()">&times;</button>
-    <div class="modal-content" (click)="$event.stopPropagation()">
-        <img [src]="selectedImageUrl" alt="Full screen preview">
+<!-- ── Not found ─────────────────────────────────────────────── -->
+<div class="not-found" *ngIf="!loading && !gallery">
+  <div class="container">
+    <div class="not-found-inner">
+      <div class="nf-icon">🖼️</div>
+      <h2>Album not found</h2>
+      <p>This album may have been removed or doesn't exist.</p>
+      <a routerLink="/gallery" class="btn-back-home">← Back to Gallery</a>
     </div>
+  </div>
+</div>
+
+<!-- ── Lightbox Modal ─────────────────────────────────────────── -->
+<div class="lightbox" *ngIf="selectedImageUrl" (click)="closeModal()">
+  <!-- Close -->
+  <button class="lb-close" (click)="closeModal()" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <!-- Prev -->
+  <button class="lb-nav lb-nav--prev" *ngIf="gallery && gallery.images.length > 1"
+          (click)="$event.stopPropagation(); prevImage()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="24" height="24">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+
+  <!-- Image -->
+  <div class="lb-content" (click)="$event.stopPropagation()">
+    <img [src]="selectedImageUrl" alt="Full preview" class="lb-img" />
+    <div class="lb-counter" *ngIf="gallery">{{ currentImageIndex + 1 }} / {{ gallery.images.length }}</div>
+  </div>
+
+  <!-- Next -->
+  <button class="lb-nav lb-nav--next" *ngIf="gallery && gallery.images.length > 1"
+          (click)="$event.stopPropagation(); nextImage()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="24" height="24">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
 </div>

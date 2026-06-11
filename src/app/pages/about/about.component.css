@@ -328,87 +328,163 @@
   flex-shrink: 0;
 }
 
-/* ---- Executive Committee ---- */
-.exec-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 24px;
+/* ---- Our Members (Continuous Marquee) ---- */
+.marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  padding: 10px 0;
+  position: relative;
 }
 
-.exec-card {
+/* Fading edges for a seamless look */
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #f9f6f3 10%, transparent);
+}
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #f9f6f3 10%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 190s linear infinite;
+}
+
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 32px;
+  padding-right: 32px; /* Match gap for seamless loop */
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.our-member-card {
+  width: 160px;
+  flex-shrink: 0;
   text-align: center;
+  transition: transform 0.22s ease;
 }
 
-.exec-photo {
+.our-member-card:hover {
+  transform: translateY(-4px);
+}
+
+.our-member-photo-wrap {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  object-fit: cover;
-  object-position: top center;
+  overflow: hidden;
+  margin: 0 auto 14px;
   border: 3px solid #e8e0d8;
-  margin-bottom: 12px;
-  transition: border-color 0.2s;
+  transition: border-color 0.22s ease;
+  background: #f0ebe4;
 }
 
-.exec-card:hover .exec-photo {
+.our-member-card:hover .our-member-photo-wrap {
   border-color: #f47920;
 }
 
-.exec-name {
+.our-member-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.our-member-card:hover .our-member-photo {
+  transform: scale(1.06);
+}
+
+.our-member-name {
   font-size: 0.9rem;
   font-weight: 700;
   color: #1a1a1a;
-  margin: 0 0 4px;
+  margin: 0 0 5px;
+  line-height: 1.35;
 }
 
-.exec-role {
+.our-member-role {
   font-family: 'Arial', sans-serif;
-  font-size: 0.75rem;
-  color: #888;
-  line-height: 1.4;
-}
-
-/* ---- State Leadership ---- */
-.state-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 24px;
-}
-
-.state-card {
-  text-align: center;
-}
-
-.state-photo {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: top center;
-  margin-bottom: 12px;
-  border: 2px solid #e8e0d8;
-  transition: border-color 0.2s;
-}
-
-.state-card:hover .state-photo {
-  border-color: #f47920;
-}
-
-.state-name {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin: 0 0 4px;
-}
-
-.state-region {
-  font-family: 'Arial', sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   color: #f47920;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
+/* Skeleton loader for members */
+.members-skeleton {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 32px;
+}
+
+.member-skel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.skel-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #e8e0d8 25%, #f4f0ec 50%, #e8e0d8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skel-line {
+  border-radius: 4px;
+  background: linear-gradient(90deg, #e8e0d8 25%, #f4f0ec 50%, #e8e0d8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  height: 12px;
+}
+
+.skel-line--name { width: 80px; }
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Empty state */
+.members-empty {
+  text-align: center;
+  padding: 48px;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+
 /* ---- Documents ---- */
+.documents {
+  padding-top: 0;
+}
+
 .docs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -643,12 +719,8 @@
     grid-template-columns: 1fr;
   }
 
-  .exec-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .state-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .members-skeleton {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .about-intro-stats {

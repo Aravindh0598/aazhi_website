@@ -14,14 +14,16 @@ export class AboutComponent implements OnInit {
   aboutContent: any = null;
   aboutDocuments: any[] = [];
   governingBodies: any[] = [];
+  members: any[] = [];
   loading = true;
+  membersLoading = true;
 
   public apiService = inject(ApiService);
 
   ngOnInit(): void {
+    // Fetch About content (governing body, documents, description)
     this.apiService.getAbout().subscribe({
       next: (res) => {
-        console.log('About Us Component - Received dynamic API data:', res);
         if (res.success && res.data) {
           this.aboutContent = res.data.content;
           this.aboutDocuments = res.data.documents;
@@ -34,5 +36,24 @@ export class AboutComponent implements OnInit {
         this.loading = false;
       }
     });
+
+    // Fetch paid members from /api/members
+    this.apiService.getMembers().subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.members = res.data;
+        }
+        this.membersLoading = false;
+      },
+      error: (err) => {
+        console.error('Failed to load members', err);
+        this.membersLoading = false;
+      }
+    });
+  }
+
+  getAvatarUrl(name: string): string {
+    const encodedName = encodeURIComponent(name || 'Member');
+    return `https://ui-avatars.com/api/?name=${encodedName}&background=f47920&color=fff&size=200`;
   }
 }

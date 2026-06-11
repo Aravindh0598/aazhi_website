@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../../services/api.service';
 
 interface BlogPost {
   id: number;
   title: string;
   date: string;
   excerpt: string;
+  description: string;
   category: string;
+  category_slug: string;
   slug: string;
+  image: string;
 }
 
 interface Category {
@@ -31,134 +35,77 @@ export class BlogComponent implements OnInit {
   currentPage = 1;
   readonly postsPerPage = 10;
 
-  readonly allPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: 'Care Begins with the Community',
-      date: 'January 14, 2026',
-      excerpt: 'Reflections from a Field Visit on Community Palliative Care. My last field visit of the year was a lesson in the power of community-led care and the quiet dignity it restores to every elder it touches.',
-      category: 'cause-of-serving',
-      slug: 'care-begins-with-the-community'
-    },
-    {
-      id: 2,
-      title: 'After the Floodwaters Receded, the Stories Remained',
-      date: 'January 5, 2026',
-      excerpt: 'From 3 to 6 November, 2025, I travelled to Punjab\'s Gurdaspur and Patiala districts with the HelpAge India team, just weeks after devastating floods had swept through the region.',
-      category: 'cause-of-serving',
-      slug: 'after-the-floodwaters-receded'
-    },
-    {
-      id: 3,
-      title: 'In the Warmth of a Second Home',
-      date: 'November 24, 2025',
-      excerpt: 'In the sprawling campus at Gurdaspur (Punjab) with a driveway of lush green trees, a community of elderly live with purpose, dignity, and the warmth of belonging.',
-      category: 'cause-of-serving',
-      slug: 'in-the-warmth-of-a-second-home'
-    },
-    {
-      id: 4,
-      title: 'The Care That Walks With You',
-      date: 'November 18, 2025',
-      excerpt: 'When my father started slowing down, it wasn\'t one big event. It was gradual. Hospital visits stretched longer. Food lost its appeal. And the house grew quieter in ways words struggle to describe.',
-      category: 'cause-of-serving',
-      slug: 'the-care-that-walks-with-you'
-    },
-    {
-      id: 5,
-      title: 'Bridging Generations: Reimagining Ageing as a Shared Journey',
-      date: 'October 30, 2025',
-      excerpt: 'In a world continuously reshaped by migration, digital transformation, and shifting social norms, the spaces between generations are widening even as technology claims to bring us closer.',
-      category: 'cause-of-serving',
-      slug: 'bridging-generations-reimagining-ageing'
-    },
-    {
-      id: 6,
-      title: 'A Chat About \'GPT\' – Gratitude, Patience & Time',
-      date: 'June 6, 2025',
-      excerpt: 'Powering our Lives through Core Evergreen Values. In Indian culture, the blessing most often given by our elders is \'Ayushman Bhava\' — may you live long. But what does a long life mean without gratitude?',
-      category: 'cause-of-serving',
-      slug: 'a-chat-about-gpt-gratitude-patience-and-time'
-    },
-    {
-      id: 7,
-      title: 'Viksit Bharat: Society for all Ages?',
-      date: 'July 18, 2024',
-      excerpt: 'We are all gearing up for Viksit Bharat 2047. We all have our own aspirations and dreams, but where do our elders fit in this vision? A truly developed nation must be one that honours all ages.',
-      category: 'general',
-      slug: 'viksit-bharat-society-for-all-ages'
-    },
-    {
-      id: 8,
-      title: 'Loneliness in Older Adults and Its Impact on Mental Health',
-      date: 'January 11, 2024',
-      excerpt: 'Even in a world where social media and technology are fostering relationships, loneliness still exists and affects one of the most vulnerable groups in our society — the elderly.',
-      category: 'health',
-      slug: 'loneliness-in-older-adults-mental-health'
-    },
-    {
-      id: 9,
-      title: 'Understanding, Preventing, and Responding to Elder Abuse',
-      date: 'January 11, 2024',
-      excerpt: 'Elder abuse presents a complex and multifaceted challenge that demands a systematic approach encompassing nuanced identification, proactive prevention, and decisive intervention at every level of society.',
-      category: 'cause-of-serving',
-      slug: 'understanding-preventing-responding-elder-abuse'
-    },
-    {
-      id: 10,
-      title: 'Addressing the Intersection of Age and Disability: Policy Challenges in India',
-      date: 'November 27, 2023',
-      excerpt: 'Ageing is an inevitable part of life, and it often brings with it an increased likelihood of experiencing disability, both physical and cognitive. India\'s policy framework must evolve to address this reality.',
-      category: 'cause-of-serving',
-      slug: 'age-and-disability-policy-challenges-india'
-    },
-    {
-      id: 11,
-      title: 'Digital Inclusion for Senior Citizens: A Necessity, Not a Luxury',
-      date: 'October 15, 2023',
-      excerpt: 'As India rapidly digitises its public services, millions of elderly citizens are being left behind. Bridging this gap is not just about technology — it\'s about dignity and access to rights.',
-      category: 'general',
-      slug: 'digital-inclusion-senior-citizens'
-    },
-    {
-      id: 12,
-      title: 'HelpAge India\'s Annual Report 2023-24: Highlights',
-      date: 'September 1, 2023',
-      excerpt: 'Our Annual Report 2023-24 captures the breadth and depth of HelpAge India\'s work across healthcare, agecare, livelihoods, and advocacy — touching over two million lives.',
-      category: 'financials',
-      slug: 'annual-report-2023-24-highlights'
-    },
-  ];
-
-  readonly categories: Category[] = [
-    { name: 'Cause of Serving', slug: 'cause-of-serving', count: 44 },
-    { name: 'Financials',       slug: 'financials',       count: 7  },
-    { name: 'General',          slug: 'general',          count: 5  },
-    { name: 'Health',           slug: 'health',           count: 1  },
-    { name: 'Leadership',       slug: 'leadership',       count: 2  },
-    { name: 'Media Centre',     slug: 'media-centre',     count: 9  },
-    { name: 'Our Supporters',   slug: 'our-supporters',   count: 5  },
-    { name: 'Sponsor',          slug: 'sponsor',          count: 5  },
-    { name: 'Survival',         slug: 'survival',         count: 1  },
-    { name: 'Uncategorized',    slug: 'uncategorized',    count: 20 },
-  ];
+  allPosts: BlogPost[] = [];
+  categories: Category[] = [];
 
   filteredPosts: BlogPost[] = [];
   pagedPosts:    BlogPost[] = [];
   totalPages = 1;
   pageNumbers: number[] = [];
 
+  public apiService = inject(ApiService);
+
   ngOnInit(): void {
-    this.applyFilters();
+    this.apiService.getBlogs().subscribe({
+      next: (response) => {
+        if (response.success && response.data) {
+          this.allPosts = response.data.map((item: any) => {
+            // Strip HTML tags for the blog card excerpt
+            let plainText = '';
+            if (typeof document !== 'undefined') {
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = item.description || '';
+              plainText = tempDiv.textContent || tempDiv.innerText || '';
+            } else {
+              plainText = (item.description || '').replace(/<[^>]*>/g, '');
+            }
+
+            return {
+              id: item.id,
+              title: item.title,
+              date: new Date(item.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+              excerpt: plainText,
+              description: item.description || '',
+              category: item.tag_category?.name || 'Uncategorized',
+              category_slug: item.tag_category?.id ? item.tag_category.id.toString() : 'uncategorized',
+              slug: item.id.toString(),
+              image: item.image ? (item.image.startsWith('http') ? item.image : this.apiService.storageUrl + item.image) : ''
+            };
+          });
+
+          // Generate categories from loaded data
+          const catMap = new Map<string, { name: string, count: number }>();
+          this.allPosts.forEach(p => {
+            const catSlug = p.category_slug;
+            const existing = catMap.get(catSlug);
+            if (existing) {
+              existing.count++;
+            } else {
+              catMap.set(catSlug, { name: p.category, count: 1 });
+            }
+          });
+          this.categories = Array.from(catMap.entries()).map(([slug, value]) => ({
+            name: value.name,
+            slug: slug,
+            count: value.count
+          }));
+        }
+        this.applyFilters();
+      },
+      error: (err) => {
+        console.error('Failed to load blogs:', err);
+        this.applyFilters();
+      }
+    });
   }
 
-onSearch(event: Event): void {
-  const value = (event.target as HTMLInputElement).value;
-  this.searchQuery = value;
+  onSearch(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.searchQuery = value;
 
-  this.currentPage = 1;
-  this.applyFilters();
-}
+    this.currentPage = 1;
+    this.applyFilters();
+  }
 
   filterByCategory(slug: string): void {
     this.activeCategory = this.activeCategory === slug ? 'all' : slug;
@@ -177,7 +124,7 @@ onSearch(event: Event): void {
     const q = this.searchQuery.trim().toLowerCase();
 
     this.filteredPosts = this.allPosts.filter(p => {
-      const matchCat = this.activeCategory === 'all' || p.category === this.activeCategory;
+      const matchCat = this.activeCategory === 'all' || p.category_slug === this.activeCategory;
       const matchQ   = !q ||
         p.title.toLowerCase().includes(q) ||
         p.excerpt.toLowerCase().includes(q);
@@ -213,46 +160,59 @@ onSearch(event: Event): void {
   }
 
   // number of filtered posts
-getFilteredCount(): number {
-  return this.filteredPosts.length;
-}
+  getFilteredCount(): number {
+    return this.filteredPosts.length;
+  }
 
-// posts for current page
-getPaginatedPosts(): BlogPost[] {
-  return this.pagedPosts;
-}
+  // posts for current page
+  getPaginatedPosts(): BlogPost[] {
+    return this.pagedPosts;
+  }
 
-// total pages
-getTotalPages(): number {
-  return this.totalPages;
-}
+  // total pages
+  getTotalPages(): number {
+    return this.totalPages;
+  }
 
-// page numbers for pagination
-getPageNumbers(): number[] {
-  return this.pageNumbers;
-}
+  // page numbers for pagination
+  getPageNumbers(): number[] {
+    return this.pageNumbers;
+  }
 
-// clear search
-clearSearch(): void {
-  this.searchQuery = '';
-  this.currentPage = 1;
-  this.applyFilters();
-}
+  // clear search
+  clearSearch(): void {
+    this.searchQuery = '';
+    this.currentPage = 1;
+    this.applyFilters();
+  }
 
-// selected category (alias used in template)
-selectedCategory = 'all';
+  // selected category (alias used in template)
+  selectedCategory = 'all';
 
-// category selection
-selectCategory(slug: string): void {
-  this.selectedCategory = slug;
-  this.activeCategory = slug;
-  this.currentPage = 1;
-  this.applyFilters();
-}
+  // category selection
+  selectCategory(slug: string): void {
+    this.selectedCategory = this.selectedCategory === slug ? 'all' : slug;
+    this.activeCategory = this.selectedCategory;
+    this.currentPage = 1;
+    this.applyFilters();
+  }
 
-// recent posts
-getRecentPosts(): BlogPost[] {
-  return this.allPosts.slice(0, 5);
-}
+  expandedPostId: number | null = null;
+
+  togglePost(id: number, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
+    this.expandedPostId = this.expandedPostId === id ? null : id;
+  }
+
+  isExpanded(id: number): boolean {
+    return this.expandedPostId === id;
+  }
+
+  // recent posts
+  getRecentPosts(): BlogPost[] {
+    return this.allPosts.slice(0, 5);
+  }
 
 }

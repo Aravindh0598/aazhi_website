@@ -136,6 +136,14 @@ export class ApiService {
   }
 
   /**
+   * Fetches all paid members (role = member, is_paid = 1) for the About Us page.
+   */
+  getMembers(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/members`);
+  }
+
+
+  /**
    * Fetches unified frontend data (HomeSettings, WelcomeImages, About, Blogs, ImpactStories, Galleries, GetInvolved, Contacts).
    */
   getUnifiedData(lang?: string): Observable<any> {

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
@@ -10,10 +10,11 @@ import { ApiService } from '../../../services/api.service';
   templateUrl: './gallery-detail.component.html',
   styleUrl: './gallery-detail.component.css'
 })
-export class GalleryDetailComponent implements OnInit {
+export class GalleryDetailComponent implements OnInit, OnDestroy {
   gallery: any = null;
   loading = true;
   selectedImageUrl: string | null = null;
+  currentImageIndex = 0;
 
   private route = inject(ActivatedRoute);
   public apiService = inject(ApiService);
@@ -23,6 +24,10 @@ export class GalleryDetailComponent implements OnInit {
     if (id) {
       this.fetchGalleryDetail(id);
     }
+  }
+
+  ngOnDestroy(): void {
+    document.body.style.overflow = 'auto';
   }
 
   fetchGalleryDetail(id: string): void {
@@ -45,13 +50,34 @@ export class GalleryDetailComponent implements OnInit {
     return imagePath.startsWith('http') ? imagePath : this.apiService.storageUrl + imagePath;
   }
 
-  openModal(imageUrl: string): void {
+  openModal(imageUrl: string, index: number): void {
+    this.currentImageIndex = index;
     this.selectedImageUrl = imageUrl;
-    document.body.style.overflow = 'hidden'; // Lock scroll
+    document.body.style.overflow = 'hidden';
   }
 
   closeModal(): void {
     this.selectedImageUrl = null;
-    document.body.style.overflow = 'auto'; // Unlock scroll
+    document.body.style.overflow = 'auto';
+  }
+
+  nextImage(): void {
+    if (!this.gallery?.images?.length) return;
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.gallery.images.length;
+    this.selectedImageUrl = this.getImageUrl(this.gallery.images[this.currentImageIndex].image);
+  }
+
+  prevImage(): void {
+    if (!this.gallery?.images?.length) return;
+    this.currentImageIndex = (this.currentImageIndex - 1 + this.gallery.images.length) % this.gallery.images.length;
+    this.selectedImageUrl = this.getImageUrl(this.gallery.images[this.currentImageIndex].image);
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onKeyDown(e: KeyboardEvent): void {
+    if (!this.selectedImageUrl) return;
+    if (e.key === 'Escape')      this.closeModal();
+    if (e.key === 'ArrowRight')  this.nextImage();
+    if (e.key === 'ArrowLeft')   this.prevImage();
   }
 }
