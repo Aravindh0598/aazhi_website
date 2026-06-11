@@ -25,28 +25,38 @@
 <section class="cards-section">
   <div class="container">
 
+    <!-- Loading Skeleton -->
+    <div *ngIf="loading" class="cards-row cards-row--3">
+      <div class="gi-card skeleton-card" *ngFor="let i of [1, 2, 3]">
+        <div class="gi-card__img-wrap skeleton-shimmer"></div>
+        <div class="gi-card__body">
+          <div class="skeleton-tag skeleton-shimmer"></div>
+          <div class="skeleton-title skeleton-shimmer"></div>
+          <div class="skeleton-desc skeleton-shimmer"></div>
+          <div class="skeleton-btn skeleton-shimmer"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Row 1 -->
-    <div class="cards-row cards-row--3">
-
-      <!-- Job Openings -->
-      <article class="gi-card">
+    <div class="cards-row cards-row--3" *ngIf="!loading && row1Involvements.length > 0">
+      <article class="gi-card" *ngFor="let item of row1Involvements">
         <div class="gi-card__img-wrap">
           <img
-            src="https://www.helpageindia.org/wp-content/uploads/2024/11/imresizer-1730710560107.jpg"
-            alt="Job Openings"
+            [src]="item.image || 'https://www.helpageindia.org/wp-content/uploads/2024/09/Volunteer.jpg'"
+            [alt]="isTa && item.title_ta ? item.title_ta : item.title"
             class="gi-card__img" />
-          <span class="gi-card__overlay-label">Job Openings</span>
+          <span class="gi-card__overlay-label">{{ isTa && item.title_ta ? item.title_ta : item.title }}</span>
         </div>
         <div class="gi-card__body">
-          <span class="gi-card__tag">Careers</span>
-          <h2 class="gi-card__title">Job Openings</h2>
-          <p class="gi-card__desc">
-            Be a part of the HelpAge team. We value experience, empathy and a passion for the
-            elder cause.
-          </p>
-          <a href="https://www.helpageindia.org/careers" target="_blank" rel="noopener"
+          <span class="gi-card__tag" [class.gi-card__tag--green]="isStudentTag(item)">
+            {{ isTa && item.tag_category?.name_ta ? item.tag_category?.name_ta : item.tag_category?.name }}
+          </span>
+          <h2 class="gi-card__title">{{ isTa && item.title_ta ? item.title_ta : item.title }}</h2>
+          <div class="gi-card__desc" [innerHTML]="isTa && item.description_ta ? item.description_ta : item.description"></div>
+          <a [href]="getInvolvementLink(item)" target="_blank" rel="noopener"
              class="gi-card__btn">
-            View Job Openings
+            {{ getInvolvementButtonText(item) }}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"/>
@@ -55,91 +65,27 @@
           </a>
         </div>
       </article>
-
-      <!-- Corporate Activities -->
-      <article class="gi-card">
-        <div class="gi-card__img-wrap">
-          <img
-            src="https://www.helpageindia.org/wp-content/uploads/2024/09/Corporate.jpg"
-            alt="Corporate Activities"
-            class="gi-card__img" />
-          <span class="gi-card__overlay-label">Corporate</span>
-        </div>
-        <div class="gi-card__body">
-          <span class="gi-card__tag">Corporate</span>
-          <h2 class="gi-card__title">Corporate Activities</h2>
-          <p class="gi-card__desc">
-            Incorporate the elder cause into your organisation. Write to
-            <a href="mailto:csr@helpageindia.org" class="gi-card__inline-link">
-              csr&#64;helpageindia.org
-            </a>
-          </p>
-          <a href="https://www.helpageindia.org/get-involved/corporates-activities"
-             target="_blank" rel="noopener" class="gi-card__btn">
-            Learn More
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/>
-              <polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
-        </div>
-      </article>
-
-      <!-- Volunteer -->
-      <article class="gi-card">
-        <div class="gi-card__img-wrap">
-          <img
-            src="https://www.helpageindia.org/wp-content/uploads/2024/09/Volunteer.jpg"
-            alt="Volunteer With Us"
-            class="gi-card__img" />
-          <span class="gi-card__overlay-label">Volunteer</span>
-        </div>
-        <div class="gi-card__body">
-          <span class="gi-card__tag">Volunteer</span>
-          <h2 class="gi-card__title">Volunteer With Us</h2>
-          <p class="gi-card__desc">
-            Contribute your time towards the elder cause and make a real difference in the lives
-            of disadvantaged seniors across India.
-          </p>
-          <a href="https://forms.cloud.microsoft/r/pGi3Nbs72N" target="_blank" rel="noopener"
-             class="gi-card__btn">
-            Apply Now
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/>
-              <polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
-        </div>
-      </article>
-
     </div>
 
     <!-- Row 2 -->
-    <div class="cards-row cards-row--2">
-
-      <!-- Intern -->
-      <article class="gi-card gi-card--wide">
+    <div class="cards-row cards-row--2" *ngIf="!loading && row2Involvements.length > 0">
+      <article class="gi-card gi-card--wide" *ngFor="let item of row2Involvements">
         <div class="gi-card__img-wrap">
           <img
-            src="https://www.helpageindia.org/wp-content/uploads/2024/09/Internships-scaled.jpg"
-            alt="Intern With Us"
+            [src]="item.image || 'https://www.helpageindia.org/wp-content/uploads/2024/09/Volunteer.jpg'"
+            [alt]="isTa && item.title_ta ? item.title_ta : item.title"
             class="gi-card__img" />
-          <span class="gi-card__overlay-label">Internships</span>
+          <span class="gi-card__overlay-label">{{ isTa && item.title_ta ? item.title_ta : item.title }}</span>
         </div>
         <div class="gi-card__body">
-          <span class="gi-card__tag">Internships</span>
-          <h2 class="gi-card__title">Intern With Us</h2>
-          <p class="gi-card__desc">
-            Gain valuable work and life experiences with us. Write to
-            <a href="mailto:hr@helpageindia.org" class="gi-card__inline-link">
-              hr&#64;helpageindia.org
-            </a>
-          </p>
-          <a href="https://forms.cloud.microsoft/r/mHv2y7mJkA" target="_blank" rel="noopener"
+          <span class="gi-card__tag" [class.gi-card__tag--green]="isStudentTag(item)">
+            {{ isTa && item.tag_category?.name_ta ? item.tag_category?.name_ta : item.tag_category?.name }}
+          </span>
+          <h2 class="gi-card__title">{{ isTa && item.title_ta ? item.title_ta : item.title }}</h2>
+          <div class="gi-card__desc" [innerHTML]="isTa && item.description_ta ? item.description_ta : item.description"></div>
+          <a [href]="getInvolvementLink(item)" target="_blank" rel="noopener"
              class="gi-card__btn">
-            Apply Now
+            {{ getInvolvementButtonText(item) }}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"/>
@@ -148,35 +94,6 @@
           </a>
         </div>
       </article>
-
-      <!-- SAVE -->
-      <article class="gi-card gi-card--wide gi-card--save">
-        <div class="gi-card__img-wrap">
-          <img
-            src="https://www.helpageindia.org/wp-content/uploads/2025/08/save-banner-scaled.jpg"
-            alt="Student Action For Value Education"
-            class="gi-card__img" />
-          <span class="gi-card__overlay-label">SAVE</span>
-        </div>
-        <div class="gi-card__body">
-          <span class="gi-card__tag gi-card__tag--green">Students</span>
-          <h2 class="gi-card__title">Student Action For Value Education</h2>
-          <p class="gi-card__desc">
-            SAVE engages students across India to sensitise them towards ageing and the elderly,
-            creating a generation of empathetic future leaders.
-          </p>
-          <a href="https://www.helpageindia.org/save" target="_blank" rel="noopener"
-             class="gi-card__btn">
-            Learn More
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/>
-              <polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
-        </div>
-      </article>
-
     </div>
 
   </div>
@@ -194,8 +111,7 @@
         </p>
       </div>
       <div class="donate-banner__actions">
-        <a href="https://www.helpageindia.org/donate" target="_blank" rel="noopener"
-           class="btn-donate">
+        <a href="https://www.helpageindia.org/donate" target="_blank" rel="noopener" class="btn-donate">
           Donate Now
         </a>
         <a href="/contact" class="btn-contact">
