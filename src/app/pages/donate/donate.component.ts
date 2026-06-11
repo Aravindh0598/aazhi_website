@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-donate',
@@ -16,6 +16,11 @@ export class DonateComponent implements OnInit {
   homeSettings: any = null;
   
   public apiService = inject(ApiService);
+  public languageService = inject(LanguageService);
+
+  t(key: string): string {
+    return this.languageService.translate(key);
+  }
 
   donationForm = {
     name: '',
@@ -35,7 +40,7 @@ export class DonateComponent implements OnInit {
 
   nextStep(): void {
     if (!this.donationForm.name || !this.donationForm.email || !this.donationForm.amount) {
-      alert('Please fill in the required fields: Name, Email, and Amount.');
+      alert(this.t('donate.alertRequired'));
       return;
     }
     this.step = 2;
@@ -49,30 +54,30 @@ export class DonateComponent implements OnInit {
 
   submitDonation(): void {
     if (!this.donationForm.transaction_id) {
-      alert('Please enter the Transaction ID / Ref Number.');
+      alert(this.t('donate.alertTransId'));
       return;
     }
     
     this.apiService.submitDonation(this.donationForm).subscribe({
       next: (res: any) => {
         if (res.success) {
-          alert('Thank you! Your donation details have been submitted for verification.');
+          alert(this.t('donate.alertSuccess'));
           this.step = 1; 
           this.donationForm = { name: '', email: '', phone: '', address: '', amount: null, location: '', transaction_id: '' };
         } else {
-          alert('Error: ' + (res.message || 'Could not submit donation.'));
+          alert('Error: ' + (res.message || this.t('donate.alertError')));
         }
       },
       error: (err: any) => {
         console.error('Donation Error:', err);
-        alert('An error occurred while submitting your details. Please try again later.');
+        alert(this.t('donate.alertError'));
       }
     });
   }
 
   copyToClipboard(text: string): void {
     navigator.clipboard.writeText(text).then(() => {
-      alert('UPI ID copied to clipboard!');
+      alert(this.t('donate.copied'));
     }).catch((err: any) => {
       console.error('Could not copy text: ', err);
     });

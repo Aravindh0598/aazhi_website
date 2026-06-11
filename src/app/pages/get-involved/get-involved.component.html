@@ -43,7 +43,7 @@
       <article class="gi-card" *ngFor="let item of row1Involvements">
         <div class="gi-card__img-wrap">
           <img
-            [src]="item.image || 'https://www.helpageindia.org/wp-content/uploads/2024/09/Volunteer.jpg'"
+            [src]="item.image "
             [alt]="isTa && item.title_ta ? item.title_ta : item.title"
             class="gi-card__img" />
           <span class="gi-card__overlay-label">{{ isTa && item.title_ta ? item.title_ta : item.title }}</span>
@@ -72,7 +72,7 @@
       <article class="gi-card gi-card--wide" *ngFor="let item of row2Involvements">
         <div class="gi-card__img-wrap">
           <img
-            [src]="item.image || 'https://www.helpageindia.org/wp-content/uploads/2024/09/Volunteer.jpg'"
+            [src]="item.image "
             [alt]="isTa && item.title_ta ? item.title_ta : item.title"
             class="gi-card__img" />
           <span class="gi-card__overlay-label">{{ isTa && item.title_ta ? item.title_ta : item.title }}</span>

@@ -383,3 +383,108 @@
   color: #c0392b;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
+
+/* ===== TAMIL LANGUAGE MODE OVERRIDES ===== */
+.main-header.lang-ta .header-inner {
+  max-width: 1380px; /* Increase max-width to allow more space for Tamil text on large displays */
+  gap: 15px;         /* Reduce spacing between main blocks */
+}
+
+.main-header.lang-ta .logo-text {
+  font-size: 18px;   /* Reduce logo text size slightly */
+}
+
+.main-header.lang-ta .desktop-nav ul {
+  gap: 2px;
+}
+
+.main-header.lang-ta .desktop-nav ul li a,
+.main-header.lang-ta .desktop-nav ul li span {
+  padding: 8px 8px;  /* Tighter padding to fit more items */
+  font-size: 13px;   /* Slightly smaller font size for Tamil characters */
+}
+
+.main-header.lang-ta .btn-donate {
+  padding: 10px 16px;
+  font-size: 13px;
+}
+
+/* Compact rules for medium desktops/laptops in Tamil mode to prevent overflow */
+@media (min-width: 1281px) and (max-width: 1400px) {
+  .main-header.lang-ta .logo img {
+    height: 110px;
+    margin-top: 45px; /* Proportional margin adjustment for smaller logo */
+  }
+  .main-header.lang-ta .logo-text {
+    font-size: 16px;
+  }
+  .main-header.lang-ta .header-inner {
+    gap: 12px;
+    padding: 0 20px;
+  }
+  .main-header.lang-ta .desktop-nav ul li a,
+  .main-header.lang-ta .desktop-nav ul li span {
+    padding: 8px 6px;
+    font-size: 12.5px;
+  }
+}
+
+/* Tamil Mobile Breakpoint Switch - switch to mobile menu at 1280px to prevent overflow */
+@media (max-width: 1280px) {
+  .main-header.lang-ta .header-inner {
+    padding: 0 16px;
+    gap: 10px;
+  }
+  .main-header.lang-ta .logo {
+    gap: 8px;
+  }
+  .main-header.lang-ta .logo img {
+    height: 70px;
+    margin-top: 10px;
+  }
+  .main-header.lang-ta .logo-text {
+    font-size: 18px;
+  }
+  .main-header.lang-ta .btn-donate {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  .main-header.lang-ta .desktop-nav {
+    display: none;
+  }
+  .main-header.lang-ta .mobile-toggle {
+    display: flex;
+  }
+  .main-header.lang-ta .mobile-nav {
+    display: block;
+  }
+}
+
+/* Tamil Mobile Layout overrides for screen widths <= 480px to align with English mobile styles */
+@media (max-width: 480px) {
+  .main-header.lang-ta .header-inner {
+    padding: 0 12px;
+    gap: 8px;
+  }
+  .main-header.lang-ta .logo {
+    gap: 6px;
+  }
+  .main-header.lang-ta .logo img {
+    height: 100px;
+    margin-top: 25px;
+  }
+  .main-header.lang-ta .logo-text {
+    display: none;
+  }
+  .main-header.lang-ta .btn-donate {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Hide logo text in Tamil mode on screens <= 600px to prevent header layout overflow */
+@media (max-width: 600px) {
+  .main-header.lang-ta .logo-text {
+    display: none;
+  }
+}

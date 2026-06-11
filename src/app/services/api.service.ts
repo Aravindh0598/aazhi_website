@@ -9,6 +9,9 @@ export class ApiService {
   // Use the full URL to the Laravel backend
   private apiUrl = 'http://localhost:8000/api';
   readonly storageUrl = 'http://localhost:8000/storage/';
+
+  //  private apiUrl = 'http://192.168.1.85:8000/api';
+  // readonly storageUrl = 'http://192.168.1.85:8000/storage/';
   private http = inject(HttpClient);
 
   private homeSettingsSubject = new BehaviorSubject<any>(null);
