@@ -388,6 +388,7 @@
 .main-header.lang-ta .header-inner {
   max-width: 1380px; /* Increase max-width to allow more space for Tamil text on large displays */
   gap: 15px;         /* Reduce spacing between main blocks */
+  padding: 0 30px;
 }
 
 .main-header.lang-ta .logo-text {
