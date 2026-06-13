@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { LanguageService } from '../../services/language.service';
 
 interface BlogPost {
   id: number;
@@ -44,6 +45,11 @@ export class BlogComponent implements OnInit {
   pageNumbers: number[] = [];
 
   public apiService = inject(ApiService);
+  public languageService = inject(LanguageService);
+
+  t(key: string): string {
+    return this.languageService.translate(key);
+  }
 
   ngOnInit(): void {
     this.apiService.getBlogs().subscribe({

@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
 import { FormsModule } from '@angular/forms';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-home',
@@ -27,9 +28,25 @@ export class HomeComponent implements OnInit, OnDestroy {
   stats: any[] = [];
   impactStories: any[] = [];
   heroSlides: any[] = [];
+  heroSettings: any = null;
 
   public apiService = inject(ApiService);
   private http = inject(HttpClient);
+  public languageService = inject(LanguageService);
+
+  t(key: string): string {
+    return this.languageService.translate(key);
+  }
+
+  getTabLabel(tab: any): string {
+    const key = 'home.wwd.tab.' + tab.id;
+    const translated = this.languageService.translate(key);
+    return translated !== key ? translated : tab.label;
+  }
+
+  get isTa(): boolean {
+    return this.languageService.getCurrentLanguage() === 'ta';
+  }
 
   // Involvement Form Logic
   showInvolvementModal = false;
@@ -52,17 +69,60 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this.programsMap[this.activeWorkTab] ?? [];
   }
 
+  /** Resolves the 3 CTA hero buttons from backend settings (lang-aware) with static defaults */
+  get heroButtons(): { label: string; link: string; style: string; icon?: string }[] {
+    const s = this.heroSettings;
+    return [
+      {
+        // Label: always use backend value (already Tamil/EN from API ?lang=); fallback if missing
+        label: s?.hero_btn1_title || 'What We Do',
+        // Link: use backend link only when active=1 and link is set; else default route
+        link:  (s?.hero_btn1_active && s?.hero_btn1_link) ? s.hero_btn1_link : '/about-us',
+        style: 'btn-primary'
+      },
+      {
+        label: s?.hero_btn2_title || 'Support Now',
+        link:  (s?.hero_btn2_active && s?.hero_btn2_link) ? s.hero_btn2_link : '/donate',
+        style: 'btn-secondary donate-btn',
+        icon:  'fa-solid fa-heart heart-icon'
+      },
+      {
+        label: s?.hero_btn3_title || 'Get Involved',
+        link:  (s?.hero_btn3_active && s?.hero_btn3_link) ? s.hero_btn3_link : '/get-involved',
+        style: 'btn-ghost'
+      }
+    ];
+  }
+
   ngOnInit(): void {
 
-    // Load static JSON data for tabs/programs (as these aren't in API yet)
+    // Load static JSON data for tabs/programs
     this.http.get<any>('/assets/data/home-data.json').subscribe(data => {
-      // console.log('Home Component - Static JSON data received:', data);
       this.workTabs = data.workTabs;
       this.programsMap = data.programsMap;
       this.stats = data.stats;
-      // We'll use these as fallbacks if API is empty
       if (!this.impactStories.length) this.impactStories = data.impactStories;
       if (!this.heroSlides.length) this.heroSlides = data.heroSlides;
+    });
+
+    // Fetch Hero Settings (title, subtitle, buttons, stats) from backend
+    this.apiService.getHomeSettings().subscribe({
+      next: (res) => {
+        if (res.success && res.data) {
+          this.heroSettings = res.data;
+          // Override stats from backend if available
+          const s = res.data;
+          if (s.hero_stat1_number) {
+            this.stats = [
+              { value: s.hero_stat1_number, label: s.hero_stat1_title || 'Years of Service' },
+              { value: s.hero_stat2_number, label: s.hero_stat2_title || 'States Covered' },
+              { value: s.hero_stat3_number, label: s.hero_stat3_title || 'Lives Impacted' },
+              { value: s.hero_stat4_number, label: s.hero_stat4_title || 'Mobile Health Units' },
+            ];
+          }
+        }
+      },
+      error: (err) => console.error('Failed to load hero settings', err)
     });
 
     // Fetch dynamic Hero Slides (Welcome Images)

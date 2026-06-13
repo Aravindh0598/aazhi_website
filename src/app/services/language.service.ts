@@ -93,6 +93,47 @@ export class LanguageService {
       'footer.rights': 'All Rights Reserved.',
       'footer.developedBy': 'Developed by',
       
+      // About Page Hero
+      'about.hero.eyebrow': 'Know about us',
+      'about.hero.title': 'Empowering persons<br>with disabilities',
+
+      // Blog Page Hero
+      'blog.hero.home': 'Home',
+      'blog.hero.current': 'Blog',
+      'blog.hero.title': 'Blog',
+
+      // Contact Page Hero
+      'contact.hero.eyebrow': 'Contact Us',
+      'contact.hero.title': "We'd love to hear from you",
+      'contact.hero.sub': 'Have any question in mind or want to enquire? Please feel free to contact us through the form or the following details.',
+
+      // Gallery Page Hero
+      'gallery.hero.badge': '📸 Our Visual Stories',
+      'gallery.hero.title': 'Gallery',
+      'gallery.hero.sub': 'Capturing moments of impact, compassion, and community across our journey.',
+
+      // Impact Stories Page Hero
+      'impact.hero.eyebrow': 'Impact Stories',
+      'impact.hero.home': 'Home',
+      'impact.hero.current': 'Impact Stories',
+      'impact.hero.title': 'Real lives. Real change.',
+      'impact.hero.sub': 'Stories of dignity, hope and transformation from across India.',
+
+      // Get Involved Page Hero
+      'gi.hero.home': 'Home',
+      'gi.hero.current': 'Get Involved',
+      'gi.hero.title': 'Get Involved',
+
+      // Home Page – What We Do Section
+      'home.wwd.label': 'What we do',
+      'home.wwd.title': 'Programmes for Holistic Support for Persons with<br>Disabilities',
+      'home.wwd.desc': 'At every step, we are together – especially when they need us the most.',
+      'home.wwd.tab.healthcare': 'Healthcare',
+      'home.wwd.tab.agecare': 'Agecare',
+      'home.wwd.tab.livelihoods': 'Livelihoods',
+      'home.wwd.tab.advocacy': 'Awareness & Advocacy',
+      'home.prog.learnMore': 'Learn More →',
+
       // Dynamic Days & Timings
       'day.Sunday': 'Sunday',
       'day.Monday': 'Monday',
@@ -185,6 +226,47 @@ export class LanguageService {
       'footer.donateNow': 'இப்போதே நன்கொடை அளியுங்கள்',
       'footer.rights': 'அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.',
       'footer.developedBy': 'உருவாக்கியவர்',
+
+      // About Page Hero
+      'about.hero.eyebrow': 'எங்களைப் பற்றி அறிக',
+      'about.hero.title': 'மாற்றுத்திறனாளிகளை<br>வலுப்படுத்துகிறோம்',
+
+      // Blog Page Hero
+      'blog.hero.home': 'முகப்பு',
+      'blog.hero.current': 'வலைப்பதிவு',
+      'blog.hero.title': 'வலைப்பதிவு',
+
+      // Contact Page Hero
+      'contact.hero.eyebrow': 'தொடர்பு கொள்ளுங்கள்',
+      'contact.hero.title': 'நாங்கள் உங்களிடமிருந்து கேட்க விரும்புகிறோம்',
+      'contact.hero.sub': 'ஏதேனும் கேள்வி இருந்தால் அல்லது தகவல் அறிய விரும்பினால், படிவம் மூலம் அல்லது கீழே உள்ள விவரங்கள் வழியாக எங்களை தொடர்பு கொள்ளவும்.',
+
+      // Gallery Page Hero
+      'gallery.hero.badge': '📸 எங்கள் காட்சிக் கதைகள்',
+      'gallery.hero.title': 'படத்தொகுப்பு',
+      'gallery.hero.sub': 'எங்கள் பயணத்தில் தாக்கம், அன்பு மற்றும் சமூகத்தின் தருணங்களை படம்பிடித்தல்.',
+
+      // Impact Stories Page Hero
+      'impact.hero.eyebrow': 'தாக்கக் கதைகள்',
+      'impact.hero.home': 'முகப்பு',
+      'impact.hero.current': 'தாக்கக் கதைகள்',
+      'impact.hero.title': 'உண்மையான வாழ்க்கை. உண்மையான மாற்றம்.',
+      'impact.hero.sub': 'இந்தியா முழுவதும் உள்ள கண்ணியம், நம்பிக்கை மற்றும் மாற்றத்தின் கதைகள்.',
+
+      // Get Involved Page Hero
+      'gi.hero.home': 'முகப்பு',
+      'gi.hero.current': 'பங்கேற்க',
+      'gi.hero.title': 'பங்கேற்க',
+
+      // Home Page – What We Do Section
+      'home.wwd.label': 'என்ன செய்கிறோம்',
+      'home.wwd.title': 'மாற்றுத்திறனாளிகளுக்கான<br>முழுமையான ஆதரவு திட்டங்கள்',
+      'home.wwd.desc': 'ஒவ்வொரு கட்டத்திலும், நாங்கள் உங்களோடு இருக்கிறோம் – குறிப்பாக அவர்களுக்கு அதிகமாகத் தேவைப்படும் போது.',
+      'home.wwd.tab.healthcare': 'சுகாதாரம்',
+      'home.wwd.tab.agecare': 'முதியோர் பராமரிப்பு',
+      'home.wwd.tab.livelihoods': 'வாழ்வாதாரம்',
+      'home.wwd.tab.advocacy': 'விழிப்புணர்வு & வழக்காடல்',
+      'home.prog.learnMore': 'மேலும் அறிய →',
 
       // Dynamic Days & Timings
       'day.Sunday': 'ஞாயிற்றுக்கிழமை',

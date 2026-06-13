@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-get-involved',
@@ -17,6 +18,11 @@ export class GetInvolvedComponent implements OnInit {
   isTa = false;
 
   private apiService = inject(ApiService);
+  public languageService = inject(LanguageService);
+
+  t(key: string): string {
+    return this.languageService.translate(key);
+  }
 
   ngOnInit(): void {
     this.isTa = (typeof window !== 'undefined' && localStorage.getItem('lang')) === 'ta';

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { LanguageService } from '../../services/language.service';
 import { Component, inject } from '@angular/core';
 
 @Component({
@@ -12,6 +13,11 @@ import { Component, inject } from '@angular/core';
 })
 export class ContactComponent {
   private apiService = inject(ApiService);
+  public languageService = inject(LanguageService);
+
+  t(key: string): string {
+    return this.languageService.translate(key);
+  }
   
   submitted = false;
   loading = false;

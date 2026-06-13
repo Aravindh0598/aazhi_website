@@ -11,31 +11,41 @@
     {
       "icon": "fa-solid fa-hospital",
       "title": "Primary Healthcare",
+      "title_ta": "முதன்மை சுகாதாரம்",
       "desc": "Accessible primary healthcare services delivered through mobile medical units and community clinics for persons with disabilities in both rural and urban areas.",
+      "desc_ta": "கிராமப்புற மற்றும் நகர்ப்புற மாற்றுத்திறனாளிகளுக்கு மொபைல் மருத்துவ அலகுகள் மற்றும் சமுதாய மருத்துவமனைகள் மூலம் அணுகக்கூடிய முதன்மை சுகாதார சேவைகள்.",
       "route": "/our-work/healthcare"
     },
     {
       "icon": "fa-solid fa-eye",
       "title": "Vision Care & Correction",
+      "title_ta": "பார்வை பராமரிப்பு & திருத்தம்",
       "desc": "Eye screening programs, treatment, and assistive vision support services for persons with visual impairments.",
+      "desc_ta": "பார்வை குறைபாடு உள்ளவர்களுக்கு கண் பரிசோதனை திட்டங்கள், சிகிச்சை மற்றும் உதவி பார்வை ஆதரவு சேவைகள்.",
       "route": "/our-work/healthcare"
     },
     {
       "icon": "fa-solid fa-brain",
       "title": "Mental Health Support",
+      "title_ta": "மனநல ஆதரவு",
       "desc": "Counselling, therapy, and awareness programs addressing emotional well-being and mental health challenges for persons with disabilities.",
+      "desc_ta": "மாற்றுத்திறனாளிகளின் உணர்வு நலன் மற்றும் மனநல சவால்களை நிவர்த்தி செய்யும் ஆலோசனை, சிகிச்சை மற்றும் விழிப்புணர்வு திட்டங்கள்.",
       "route": "/our-work/healthcare"
     },
     {
       "icon": "fa-solid fa-laptop-medical",
       "title": "Telehealth Services",
+      "title_ta": "டெலிஹெல்த் சேவைகள்",
       "desc": "Remote consultations with doctors and specialists ensuring accessible healthcare for persons with disabilities who cannot travel easily.",
+      "desc_ta": "எளிதில் பயணிக்க முடியாத மாற்றுத்திறனாளிகளுக்கு மருத்துவர்கள் மற்றும் நிபுணர்களுடன் தொலைதூர ஆலோசனைகள்.",
       "route": "/our-work/healthcare"
     },
     {
       "icon": "fa-solid fa-hand-holding-medical",
       "title": "Long-Term & Palliative Care",
+      "title_ta": "நீண்டகால & இறுதிக்கால பராமரிப்பு",
       "desc": "Compassionate care, pain management, and long-term medical support for persons with severe disabilities or chronic health conditions.",
+      "desc_ta": "கடுமையான மாற்றுத்திறன் அல்லது நாட்பட்ட உடல்நல நிலைகள் உள்ளவர்களுக்கு இரக்கமுள்ள பராமரிப்பு, வலி மேலாண்மை மற்றும் நீண்டகால மருத்துவ ஆதரவு.",
       "route": "/our-work/healthcare"
     }
   ],
@@ -44,37 +54,49 @@
     {
       "icon": "fa-solid fa-phone",
       "title": "Support Helplines",
+      "title_ta": "ஆதரவு உதவி எண்கள்",
       "desc": "24x7 toll-free helpline providing guidance, legal assistance, counselling and emergency support for persons with disabilities.",
+      "desc_ta": "மாற்றுத்திறனாளிகளுக்கு வழிகாட்டுதல், சட்ட உதவி, ஆலோசனை மற்றும் அவசர ஆதரவு வழங்கும் 24x7 இலவச உதவி எண்.",
       "route": "/our-work/agecare"
     },
     {
       "icon": "fa-solid fa-house-medical",
       "title": "Assisted Living Centres",
+      "title_ta": "உதவி வாழ்க்கை மையங்கள்",
       "desc": "Safe residential facilities offering accessible living spaces, healthcare services and community support for persons with disabilities.",
+      "desc_ta": "மாற்றுத்திறனாளிகளுக்கு அணுகக்கூடிய வாழ்க்கை இடங்கள், சுகாதார சேவைகள் மற்றும் சமுதாய ஆதரவு வழங்கும் பாதுகாப்பான குடியிருப்பு வசதிகள்.",
       "route": "/our-work/agecare"
     },
     {
       "icon": "fa-solid fa-users",
       "title": "Community Inclusion Centres",
+      "title_ta": "சமுதாய சேர்க்கை மையங்கள்",
       "desc": "Inclusive spaces where persons with disabilities participate in social activities, skill development and community engagement.",
+      "desc_ta": "மாற்றுத்திறனாளிகள் சமூக நடவடிக்கைகள், திறன் மேம்பாடு மற்றும் சமுதாய ஈடுபாட்டில் பங்கேற்கும் உள்ளடக்கிய இடங்கள்.",
       "route": "/our-work/agecare"
     },
     {
       "icon": "fa-solid fa-person-walking",
       "title": "Rehabilitation & Physiocare",
+      "title_ta": "மறுவாழ்வு & மருத்துவ பயிற்சி",
       "desc": "Physiotherapy and rehabilitation services helping persons with disabilities improve mobility, strength and independence.",
+      "desc_ta": "மாற்றுத்திறனாளிகளின் இயக்கம், வலிமை மற்றும் சுதந்திரத்தை மேம்படுத்த உதவும் இயல்புமீட்பு மற்றும் மறுவாழ்வு சேவைகள்.",
       "route": "/our-work/agecare"
     },
     {
       "icon": "fa-solid fa-hand-holding-heart",
       "title": "Caregiver Training",
+      "title_ta": "பராமரிப்பாளர் பயிற்சி",
       "desc": "Training programmes for families and caregivers to provide better care and support for persons with disabilities.",
+      "desc_ta": "மாற்றுத்திறனாளிகளுக்கு சிறந்த பராமரிப்பு மற்றும் ஆதரவு வழங்க குடும்பங்கள் மற்றும் பராமரிப்பாளர்களுக்கான பயிற்சி திட்டங்கள்.",
       "route": "/our-work/agecare"
     },
     {
       "icon": "fa-solid fa-wheelchair",
       "title": "Assistive Devices",
+      "title_ta": "உதவி சாதனங்கள்",
       "desc": "Providing wheelchairs, walkers, prosthetics and other assistive devices to improve mobility and daily living.",
+      "desc_ta": "நடமாட்டம் மற்றும் அன்றாட வாழ்க்கையை மேம்படுத்த சக்கர நாற்காலிகள், வாக்கர்கள், செயற்கை உறுப்புகள் மற்றும் பிற உதவி சாதனங்கள் வழங்குதல்.",
       "route": "/our-work/agecare"
     }
   ],
@@ -83,35 +105,44 @@
     {
       "icon": "fa-solid fa-handshake",
       "title": "Self Help Groups",
+      "title_ta": "சுய உதவிக் குழுக்கள்",
       "desc": "Community-based savings groups and micro-finance initiatives supporting persons with disabilities to build financial independence.",
+      "desc_ta": "மாற்றுத்திறனாளிகள் நிதி சுதந்திரம் பெற ஆதரவளிக்கும் சமுதாய சேமிப்பு குழுக்கள் மற்றும் நுண்ணிய நிதி முயற்சிகள்.",
       "route": "/our-work/livelihoods"
     }
-
   ],
 
   "advocacy": [
     {
       "icon": "fa-solid fa-chalkboard-user",
       "title": "Awareness & Training Workshops",
+      "title_ta": "விழிப்புணர்வு & பயிற்சி பட்டறைகள்",
       "desc": "Workshops and awareness programs for communities, institutions and government bodies to promote inclusion and rights of persons with disabilities.",
+      "desc_ta": "மாற்றுத்திறனாளிகளின் சேர்க்கை மற்றும் உரிமைகளை மேம்படுத்த சமுதாயங்கள், நிறுவனங்கள் மற்றும் அரசு அமைப்புகளுக்கான பட்டறைகள் மற்றும் விழிப்புணர்வு திட்டங்கள்.",
       "route": "/our-work/advocacy"
     },
     {
       "icon": "fa-solid fa-people-group",
       "title": "Youth Inclusion Programs",
+      "title_ta": "இளைஞர் சேர்க்கை திட்டங்கள்",
       "desc": "Engaging students and young volunteers to promote empathy, inclusion and support for persons with disabilities.",
+      "desc_ta": "மாற்றுத்திறனாளிகளுக்கான பச்சாதாபம், சேர்க்கை மற்றும் ஆதரவை மேம்படுத்த மாணவர்கள் மற்றும் இளம் தன்னார்வலர்களை ஈடுபடுத்துதல்.",
       "route": "/our-work/advocacy"
     },
     {
       "icon": "fa-solid fa-scale-balanced",
       "title": "Policy Advocacy",
+      "title_ta": "கொள்கை வழக்காடல்",
       "desc": "Working with governments and institutions to strengthen laws, accessibility standards and policies protecting the rights of persons with disabilities.",
+      "desc_ta": "மாற்றுத்திறனாளிகளின் உரிமைகளை பாதுகாக்கும் சட்டங்கள், அணுகல் தரங்கள் மற்றும் கொள்கைகளை வலுப்படுத்த அரசாங்கங்கள் மற்றும் நிறுவனங்களுடன் பணியாற்றுதல்.",
       "route": "/our-work/advocacy"
     },
     {
       "icon": "fa-solid fa-microscope",
       "title": "Research & Knowledge",
+      "title_ta": "ஆராய்ச்சி & அறிவு",
       "desc": "Conducting research and generating evidence to improve disability inclusion, policy frameworks and social awareness.",
+      "desc_ta": "மாற்றுத்திறன் சேர்க்கை, கொள்கை கட்டமைப்புகள் மற்றும் சமூக விழிப்புணர்வை மேம்படுத்த ஆராய்ச்சி நடத்துதல் மற்றும் ஆதாரங்கள் உருவாக்குதல்.",
       "route": "/our-work/advocacy"
     }
   ]

@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
+import { LanguageService } from '../../services/language.service';
 
 export interface ImpactStory {
   id: number;
@@ -34,6 +35,11 @@ export class ImpactStoriesComponent implements OnInit {
   allStories: ImpactStory[] = [];
 
   public apiService = inject(ApiService);
+  public languageService = inject(LanguageService);
+
+  t(key: string): string {
+    return this.languageService.translate(key);
+  }
 
 
   ngOnInit(): void {
